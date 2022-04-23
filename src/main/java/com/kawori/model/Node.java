@@ -1,14 +1,11 @@
-package com.bot.KaworiSpring.model;
-
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.kawori.model;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class Node.
  */
-@Document
 public class Node extends Model{
-	
+
 	/** The tier. */
 	private String tier;
 

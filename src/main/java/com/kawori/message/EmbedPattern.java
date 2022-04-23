@@ -1,4 +1,4 @@
-package com.bot.KaworiSpring.discord.message;
+package com.kawori.message;
 
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -9,17 +9,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.TimeZone;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import com.bot.KaworiSpring.discord.command.Command;
-import com.bot.KaworiSpring.model.AutoRole;
-import com.bot.KaworiSpring.model.Gear;
-import com.bot.KaworiSpring.model.Node;
-import com.bot.KaworiSpring.model.NodeWar;
-import com.bot.KaworiSpring.model.NodeWarPresence;
-import com.bot.KaworiSpring.model.Personagem;
-import com.bot.KaworiSpring.util.Emojis;
+import com.kawori.command.Command;
+import com.kawori.model.AutoRole;
+import com.kawori.model.Gear;
+import com.kawori.model.Node;
+import com.kawori.model.NodeWar;
+import com.kawori.model.NodeWarPresence;
+import com.kawori.model.Personagem;
+import com.kawori.util.Emojis;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
@@ -33,12 +30,10 @@ import net.dv8tion.jda.api.entities.User;
 /**
  * The Class EmbedPattern.
  */
-@Component
 public class EmbedPattern {
 
 	/** The message controller. */
-	@Autowired
-	private MessageController messageController;
+	private MessageController messageController = new MessageController();
 
 	/**
 	 * Creates the select tier embed.

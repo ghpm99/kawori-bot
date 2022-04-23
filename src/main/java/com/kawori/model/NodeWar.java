@@ -1,15 +1,11 @@
-package com.bot.KaworiSpring.model;
+package com.kawori.model;
 
 import java.util.Date;
-
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class NodeWar.
  */
-@Document
 public class NodeWar extends Model {
 
 	/** The id guild. */
@@ -22,7 +18,6 @@ public class NodeWar extends Model {
 	private Date date;
 
 	/** The node. */
-	@DBRef
 	private Node node;
 
 	/** The id message. */
@@ -36,7 +31,7 @@ public class NodeWar extends Model {
 		date = new Date();
 		node = new Node();
 	}
-	
+
 	/**
 	 * Gets the id guild.
 	 *

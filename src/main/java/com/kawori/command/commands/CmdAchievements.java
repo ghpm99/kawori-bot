@@ -1,9 +1,8 @@
-package com.bot.KaworiSpring.discord.command.commands;
+package com.kawori.command.commands;
 
-import org.springframework.stereotype.Component;
 
-import com.bot.KaworiSpring.discord.command.Command;
-import com.bot.KaworiSpring.discord.security.Permissions;
+import com.kawori.command.Command;
+import com.kawori.security.Permissions;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -11,7 +10,6 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 /**
  * The Class CmdAchievements.
  */
-@Component
 public class CmdAchievements extends Command{
 
 	/**
@@ -35,7 +33,7 @@ public class CmdAchievements extends Command{
 	@Override
 	public void executed(boolean success, MessageReceivedEvent event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/**

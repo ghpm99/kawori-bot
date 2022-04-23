@@ -1,4 +1,4 @@
-package com.bot.KaworiSpring.discord.message;
+package com.kawori.message;
 
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.MessageChannel;

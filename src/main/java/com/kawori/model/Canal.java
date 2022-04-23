@@ -1,23 +1,20 @@
-package com.bot.KaworiSpring.model;
-
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.kawori.model;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class Canal.
  */
-@Document(collection =  "channel")
-public class Canal extends Model{	
-		
+public class Canal extends Model{
+
 	/** The id guild. */
 	private long idGuild;
-	
+
 	/** The name. */
 	private String name;
-	
+
 	/** The tipo. */
 	private String tipo;
-	
+
 	/** The send message. */
 	private boolean sendMessage;
 
@@ -38,7 +35,7 @@ public class Canal extends Model{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	/**
 	 * Gets the tipo.
 	 *
@@ -92,7 +89,7 @@ public class Canal extends Model{
 	public void setIdGuild(long idGuild) {
 		this.idGuild = idGuild;
 	}
-	
-	
+
+
 
 }

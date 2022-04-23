@@ -1,13 +1,9 @@
-package com.bot.KaworiSpring.model;
-
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.kawori.model;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class Gear.
  */
-@Document(collection =  "gear")
 public class Gear extends Model {
 
 	/** The id discord. */
@@ -35,7 +31,6 @@ public class Gear extends Model {
 	private int score;
 
 	/** The personagem. */
-	@DBRef
 	private Personagem personagem;
 
 	/** The ativo. */
@@ -55,7 +50,7 @@ public class Gear extends Model {
 		personagem = new Personagem();
 		young = true;
 	}
-	
+
 	/**
 	 * Gets the id discord.
 	 *

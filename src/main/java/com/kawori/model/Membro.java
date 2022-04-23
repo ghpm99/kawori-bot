@@ -1,14 +1,11 @@
-package com.bot.KaworiSpring.model;
+package com.kawori.model;
 
 import java.util.Date;
-
-import org.springframework.data.mongodb.core.mapping.Document;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class Membro.
  */
-@Document(collection = "member")
 public class Membro extends Model{
 
 	/** The id discord. */

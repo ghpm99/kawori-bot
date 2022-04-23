@@ -1,12 +1,9 @@
-package com.bot.KaworiSpring.model;
-
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.kawori.model;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class Configuration.
  */
-@Document(collection =  "config")
 public class Configuration extends Model {
 
 	/** The type. */

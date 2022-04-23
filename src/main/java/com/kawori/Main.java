@@ -1,22 +1,14 @@
 package com.kawori;
 
-import java.util.Date;
-
 import javax.security.auth.login.LoginException;
 
 import com.kawori.command.CommandHandler;
 import com.kawori.command.commands.CmdAchievements;
-import com.kawori.command.commands.CmdAdm;
-import com.kawori.command.commands.CmdAutoRole;
 import com.kawori.command.commands.CmdAvatar;
-import com.kawori.command.commands.CmdChar;
-import com.kawori.command.commands.CmdExcel;
 import com.kawori.command.commands.CmdFun;
-import com.kawori.command.commands.CmdGS;
 import com.kawori.command.commands.CmdHelp;
-import com.kawori.command.commands.CmdNodeWar;
+import com.kawori.command.commands.CmdInfo;
 import com.kawori.command.commands.CmdPick;
-import com.kawori.command.commands.CmdRank;
 import com.kawori.command.commands.CmdRegion;
 import com.kawori.listener.BotListener;
 import com.kawori.listener.GuildListener;
@@ -24,109 +16,27 @@ import com.kawori.listener.MessageListener;
 import com.kawori.listener.ReactionListener;
 import com.kawori.listener.ReadyListener;
 import com.kawori.listener.UserListener;
-
-import org.slf4j.helpers.Util;
+import com.kawori.service.StatusService;
+import com.kawori.settings.Settings;
+import com.kawori.util.Util;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
-public class Main {
+public class Main{
 
     private JDA jda;
 
     public Main(){
 
-    }
-
-    /** The cmd GS. */
-    // Comandos
-    private CmdGS cmdGS;
-
-    /** The cmd rank. */
-    private CmdRank cmdRank;
-
-    /** The cmd help. */
-    private CmdHelp cmdHelp;
-
-    /** The cmd node war. */
-    private CmdNodeWar cmdNodeWar;
-
-    /** The cmd adm. */
-    private CmdAdm cmdAdm;
-
-    /** The cmd pick. */
-    private CmdPick cmdPick;
-
-    /** The cmd avatar. */
-    private CmdAvatar cmdAvatar;
-
-    /** The cmd fun. */
-    private CmdFun cmdFun;
-
-    /** The cmd char. */
-    private CmdChar cmdChar;
-
-    /** The cmd info. */
-    private CmdInfo cmdInfo;
-
-    /** The cmd config. */
-    private CmdConfig cmdConfig;
-
-    /** The cmd excel. */
-    private CmdExcel cmdExcel;
-
-    /** The cmd region. */
-    private CmdRegion cmdRegion;
-
-    /** The cmd auto role. */
-    private CmdAutoRole cmdAutoRole;
-
-    /** The cmd achievements. */
-    private CmdAchievements cmdAchievements;
-
-    /** The ready listener. */
-    // Eventos Listeners
-    private ReadyListener readyListener;
-
-    /** The message listener. */
-    private MessageListener messageListener;
-
-    /** The reaction listener. */
-    private ReactionListener reactionListener;
-
-    /** The guild listener. */
-    private GuildListener guildListener;
-
-    /** The bot listener. */
-    private BotListener botListener;
-
-    /** The user listener. */
-    private UserListener userListener;
-
-    /** The status service. */
-    // Services
-    private StatusService statusService;
-
-    /** The log service. */
-    private LogService logService;
-
-    /** The config service. */
-    ConfigurationService configService;
-
-    /**
-     * Inits the.
-     */
-    public void init() {
-
         statusService.setStatusBot("Iniciando...");
-        logService.addEvent(new Log(new Date(), "Iniciando Bot", "", "", "OK"));
 
-        Util.PREFIX = configService.getByType("prefix").getValue();
-        Util.PREFIXAUTOROLE = configService.getByType("prefixAutoRole").getValue();
+        Util.PREFIX = Settings.getPrefix();
+        Util.PREFIXAUTOROLE = Settings.getPrefixRole();
 
-        JDABuilder builder = JDABuilder.createDefault(configService.getByType("token").getValue(),
+        JDABuilder builder = JDABuilder.createDefault(Settings.getToken(),
                 GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MESSAGE_REACTIONS,
                 GatewayIntent.DIRECT_MESSAGES, GatewayIntent.DIRECT_MESSAGE_REACTIONS).setAutoReconnect(true);
 
@@ -138,14 +48,64 @@ public class Main {
 
         try {
             jda = builder.build();
+            jda.awaitReady();
 
         } catch (LoginException e) {
             // TODO Auto-generated catch block
 
             e.printStackTrace();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
-
     }
+
+    /** The cmd help. */
+    private CmdHelp cmdHelp = new CmdHelp();
+
+    /** The cmd pick. */
+    private CmdPick cmdPick = new CmdPick();
+
+    /** The cmd avatar. */
+    private CmdAvatar cmdAvatar = new CmdAvatar();
+
+    /** The cmd fun. */
+    private CmdFun cmdFun = new CmdFun();
+
+
+    /** The cmd info. */
+    private CmdInfo cmdInfo = new CmdInfo();
+
+
+    /** The cmd region. */
+    private CmdRegion cmdRegion = new CmdRegion();
+
+
+    /** The cmd achievements. */
+    private CmdAchievements cmdAchievements = new CmdAchievements();
+
+    /** The ready listener. */
+    // Eventos Listeners
+    private ReadyListener readyListener = new ReadyListener();
+
+    /** The message listener. */
+    private MessageListener messageListener = new MessageListener();
+
+    /** The reaction listener. */
+    private ReactionListener reactionListener = new ReactionListener();
+
+    /** The guild listener. */
+    private GuildListener guildListener = new GuildListener();
+
+    /** The bot listener. */
+    private BotListener botListener = new BotListener();
+
+    /** The user listener. */
+    private UserListener userListener = new UserListener();
+
+    /** The status service. */
+    // Services
+    private StatusService statusService = new StatusService();
 
     /**
      * Sets the listeners.
@@ -153,40 +113,26 @@ public class Main {
      * @param builder the new listeners
      */
     private void setListeners(JDABuilder builder) {
-        logService.addEvent(new Log(new Date(), "Adicionando Listeners", "", "", "-"));
+
         builder.addEventListeners(readyListener);
         builder.addEventListeners(messageListener);
         builder.addEventListeners(reactionListener);
         builder.addEventListeners(guildListener);
         builder.addEventListeners(botListener);
         builder.addEventListeners(userListener);
-        logService.addEvent(new Log(new Date(), "Listeners adicionados", "", "", "OK"));
+
     }
 
     /**
      * Sets the commands.
      */
     private void setCommands() {
-        logService.addEvent(new Log(new Date(), "Adicionando Comandos", "", "", "-"));
         // util
         CommandHandler.commands.put("help", cmdHelp);
         CommandHandler.commands.put("info", cmdInfo);
         CommandHandler.commands.put("region", cmdRegion);
         CommandHandler.commands.put("achievements", cmdAchievements);
 
-        // build
-        CommandHandler.commands.put("gear", cmdGS);
-        CommandHandler.commands.put("rank", cmdRank);
-        CommandHandler.commands.put("char", cmdChar);
-
-        // node war
-        CommandHandler.commands.put("nw", cmdNodeWar);
-
-        // adm
-        CommandHandler.commands.put("adm", cmdAdm);
-        CommandHandler.commands.put("config", cmdConfig);
-        CommandHandler.commands.put("excel", cmdExcel);
-        CommandHandler.commands.put("autorole", cmdAutoRole);
 
         // fun
         CommandHandler.commands.put("pick", cmdPick);
@@ -212,7 +158,6 @@ public class Main {
         CommandHandler.commands.put("trap", cmdFun);
         CommandHandler.commands.put("explosion", cmdFun);
 
-        logService.addEvent(new Log(new Date(), "Comandos adicionados", "", "", "OK"));
     }
 
     /**

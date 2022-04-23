@@ -1,16 +1,8 @@
-package com.bot.KaworiSpring.discord.listener;
+package com.kawori.listener;
 
-import java.util.Date;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
-import com.bot.KaworiSpring.discord.controller.BotController;
-import com.bot.KaworiSpring.model.Log;
-import com.bot.KaworiSpring.service.ConfigurationService;
-import com.bot.KaworiSpring.service.LogService;
-import com.bot.KaworiSpring.service.StatusService;
-import com.bot.KaworiSpring.util.Util;
+import com.kawori.controller.BotController;
+import com.kawori.service.StatusService;
+import com.kawori.util.Util;
 
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.events.ReadyEvent;
@@ -28,24 +20,19 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
  *
  * @see ReadyEvent
  */
-@Controller
+
 public class ReadyListener extends ListenerAdapter {
 
 	/** The status service. */
-	@Autowired
-	private StatusService statusService;
-	
-	/** The config service. */
-	@Autowired
-	private ConfigurationService configService;
-	
+
+	private StatusService statusService = new StatusService();
+
 	/** The bot controller. */
-	@Autowired
-	private BotController botController;
-	
+
+	private BotController botController = new BotController();
+
 	/** The log. */
-	@Autowired
-	private LogService log;
+
 
 	/**
 	 * On ready.
@@ -55,26 +42,16 @@ public class ReadyListener extends ListenerAdapter {
 	@Override
 	public void onReady(ReadyEvent e) {
 
-		boolean loading = configService.getByType("load").getValue().equals("1");
-		
-		statusService.setStatusBot("Loading...");
-		log.addEvent(new Log(new Date(), "Loading bot:" + loading, "", "", "Loading"));
+		e.getJDA().getGuilds().forEach((guild) -> {
+			botController.onGuildJoin(guild);
+		});
 
-		if (loading) {
-
-			e.getJDA().getGuilds().forEach((guild) -> {
-
-				log.addEvent(new Log(new Date(), "Update Guild", guild.getId(), "", ""));				
-				botController.onGuildJoin(guild);
-			});
-
-		}
 		statusService.setStatusBot("Online");
 
 		e.getJDA().getPresence().setActivity(Activity.playing(Util.PREFIX + "help"));
 
 	}
-	
-	
+
+
 
 }

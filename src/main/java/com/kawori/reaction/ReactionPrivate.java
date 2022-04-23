@@ -1,4 +1,4 @@
-package com.bot.KaworiSpring.discord.reaction;
+package com.kawori.reaction;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -14,5 +14,5 @@ public interface ReactionPrivate {
 	 * @param isAdd the is add
 	 */
 	public void onPrivateMessageReaction(String emote, String idUser, boolean isAdd);
-	
+
 }

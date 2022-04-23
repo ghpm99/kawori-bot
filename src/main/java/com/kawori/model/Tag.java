@@ -1,14 +1,11 @@
-package com.bot.KaworiSpring.model;
+package com.kawori.model;
 
 import java.awt.Color;
-
-import org.springframework.data.mongodb.core.mapping.Document;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class Tag.
  */
-@Document(collection = "role")
 public class Tag extends Model {
 
 	/** The id guild. */

@@ -1,4 +1,4 @@
-package com.bot.KaworiSpring.discord.security;
+package com.kawori.security;
 
 // TODO: Auto-generated Javadoc
 /**

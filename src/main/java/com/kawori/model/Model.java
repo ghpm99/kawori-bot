@@ -1,6 +1,4 @@
-package com.bot.KaworiSpring.model;
-
-import org.springframework.data.annotation.Id;
+package com.kawori.model;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -9,18 +7,17 @@ import org.springframework.data.annotation.Id;
 public class Model {
 
 	/** The id. */
-	@Id	
 	private String id;
-	
+
 	/** The new record. */
 	private boolean newRecord = true;
-	
+
 	/**
 	 * Gets the id.
 	 *
 	 * @return the id
 	 */
-	public String getId() {		
+	public String getId() {
 		return id;
 	}
 
@@ -50,7 +47,7 @@ public class Model {
 	public void setNewRecord(boolean newRecord) {
 		this.newRecord = newRecord;
 	}
-	
-	
-	
+
+
+
 }

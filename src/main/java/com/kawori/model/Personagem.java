@@ -1,13 +1,9 @@
-package com.bot.KaworiSpring.model;
-
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.kawori.model;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class Personagem.
  */
-@Document(collection =  "personagem")
 public class Personagem extends Model {
 
 	/** The name. */
@@ -15,7 +11,7 @@ public class Personagem extends Model {
 
 	/** The classe. */
 	private String classe;
-	
+
 	/** The battle mode. */
 	/*
 	 * 1 = warrior 2 = witch 3 = kunoichi 4 = dark knight 5 = lahn 6 = shai 7 =
@@ -29,12 +25,11 @@ public class Personagem extends Model {
 	 */
 
 	/** The membro. */
-	@DBRef
 	private Membro membro;
 
 	/** The ativo. */
 	private boolean ativo;
-	
+
 	/**
 	 * Instantiates a new personagem.
 	 */

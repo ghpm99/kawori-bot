@@ -1,4 +1,4 @@
-package com.bot.KaworiSpring.service;
+package com.kawori.service;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,11 +7,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.bot.KaworiSpring.model.Guilda;
-import com.bot.KaworiSpring.model.Operator;
+import com.kawori.model.Guilda;
+import com.kawori.model.Operator;
 
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.User;
@@ -20,16 +17,8 @@ import net.dv8tion.jda.api.entities.User;
 /**
  * The Class LanguageService.
  */
-@Service
+
 public class LanguageService {
-
-	/** The guilda service. */
-	@Autowired
-	private GuildaService guildaService;
-
-	/** The operator service. */
-	@Autowired
-	private OperatorService operatorService;
 
 	private final String DEFAULT_LANGUAGE = "Brazil";
 
@@ -41,9 +30,8 @@ public class LanguageService {
 	 * @return the language
 	 */
 	public String getLanguage(Guild guild, User user) {
-		Guilda guilda = guildaService.findById(guild.getId());
-		Operator operator = operatorService.findById(user.getId());
-		return getLanguage(guilda, operator);
+
+		return DEFAULT_LANGUAGE;
 	}
 
 	/**
@@ -132,9 +120,6 @@ public class LanguageService {
 	 * @param region the region
 	 */
 	public void setRegion(Guild guild, String region) {
-		Guilda guilda = guildaService.findById(guild.getId());
-		guilda.setRegion(region.toLowerCase());
-		guildaService.save(guilda);
 
 	}
 
@@ -145,10 +130,6 @@ public class LanguageService {
 	 * @param region the region
 	 */
 	public void setRegion(User user, String region) {
-
-		Operator operator = operatorService.findById(user.getId());
-		operator.setRegion(region.toLowerCase());
-		operatorService.save(operator);
 
 	}
 

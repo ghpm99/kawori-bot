@@ -1,25 +1,22 @@
-package com.bot.KaworiSpring.model;
+package com.kawori.model;
 
 import java.awt.Color;
-
-import org.springframework.data.mongodb.core.mapping.Document;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class ColorBD.
  */
-@Document
 public class ColorBD extends Model{
 
 	/** The name. */
 	private String name;
-	
+
 	/** The red. */
 	private int red;
-	
+
 	/** The green. */
 	private int green;
-	
+
 	/** The blue. */
 	private int blue;
 
@@ -94,7 +91,7 @@ public class ColorBD extends Model{
 	public void setBlue(int blue) {
 		this.blue = blue;
 	}
-	
+
 	/**
 	 * Gets the color.
 	 *
@@ -103,5 +100,5 @@ public class ColorBD extends Model{
 	public Color getColor() {
 		return new Color(red,green,blue);
 	}
-	
+
 }

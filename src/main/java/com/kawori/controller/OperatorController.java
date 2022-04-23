@@ -1,10 +1,6 @@
-package com.bot.KaworiSpring.discord.controller;
+package com.kawori.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
-import com.bot.KaworiSpring.model.Operator;
-import com.bot.KaworiSpring.service.OperatorService;
+import com.kawori.model.Operator;
 
 import net.dv8tion.jda.api.entities.User;
 
@@ -12,12 +8,8 @@ import net.dv8tion.jda.api.entities.User;
 /**
  * The Class OperatorController.
  */
-@Controller
-public class OperatorController {
 
-	/** The operator service. */
-	@Autowired
-	private OperatorService operatorService;
+public class OperatorController {
 
 	/**
 	 * Update operator.
@@ -26,11 +18,7 @@ public class OperatorController {
 	 * @return the operator
 	 */
 	public Operator updateOperator(User user) {
-		Operator operator = findOperator(user.getId());
-		operator.setName(user.getName());
-		operator.setDiscriminator(user.getDiscriminator());
-
-		return operatorService.save(operator);
+		return new Operator();
 	}
 
 	/**
@@ -40,37 +28,28 @@ public class OperatorController {
 	 * @return the operator
 	 */
 	private Operator findOperator(String id) {
-		Operator operator = operatorService.findById(id);
-		if (operator == null) {
-			operator = new Operator();
-			operator.setId(id);
-		}
 
-		return operator;
+		return new Operator();
 	}
 
 	/**
 	 * On user update name.
 	 *
-	 * @param id the id
+	 * @param id      the id
 	 * @param newName the new name
 	 */
 	public void onUserUpdateName(String id, String newName) {
-		Operator operator = findOperator(id);
-		operator.setName(newName);
-		operatorService.save(operator);
+
 	}
-	
+
 	/**
 	 * On user update discriminator.
 	 *
-	 * @param id the id
+	 * @param id            the id
 	 * @param discriminator the discriminator
 	 */
 	public void onUserUpdateDiscriminator(String id, String discriminator) {
-		Operator operator = findOperator(id);
-		operator.setDiscriminator(discriminator);
-		operatorService.save(operator);
+
 	}
-	
+
 }

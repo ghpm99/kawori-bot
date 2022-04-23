@@ -1,18 +1,15 @@
-package com.bot.KaworiSpring.model;
-
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.kawori.model;
 
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class GifBD.
  */
-@Document
 public class GifBD extends Model{
-	
+
 	/** The url. */
 	private String url;
-	
+
 	/** The type. */
 	private String type;
 
@@ -51,7 +48,7 @@ public class GifBD extends Model{
 	public void setType(String type) {
 		this.type = type;
 	}
-	
-	
+
+
 
 }

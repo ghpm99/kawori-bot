@@ -1,18 +1,11 @@
-package com.bot.KaworiSpring.discord.controller;
+package com.kawori.controller;
 
 import java.util.HashMap;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
-import com.bot.KaworiSpring.model.AdventureFame;
-import com.bot.KaworiSpring.model.ColorBD;
-import com.bot.KaworiSpring.model.Gear;
-import com.bot.KaworiSpring.model.Tag;
-import com.bot.KaworiSpring.service.AdventureFameService;
-import com.bot.KaworiSpring.service.ColorBDService;
-import com.bot.KaworiSpring.service.TagService;
+import com.kawori.model.AdventureFame;
+import com.kawori.model.ColorBD;
+import com.kawori.model.Gear;
 
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Role;
@@ -22,20 +15,9 @@ import net.dv8tion.jda.api.entities.User;
 /**
  * The Class TagController.
  */
-@Controller
+
 public class TagController {
 
-	/** The tag service. */
-	@Autowired
-	private TagService tagService;
-
-	/** The adventure fame service. */
-	@Autowired
-	private AdventureFameService adventureFameService;
-
-	/** The color BD service. */
-	@Autowired
-	private ColorBDService colorBDService;
 
 	/**
 	 * Update tag.
@@ -46,13 +28,6 @@ public class TagController {
 	 */
 	public void updateTag(Gear gear, Guild guild, User author) {
 
-		AdventureFame apFame = checkPlayerFame(gear.getAp(), "AP");
-		AdventureFame apAwakFame = checkPlayerFame(gear.getApAwak(), "APAWAK");
-		AdventureFame dpFame = checkPlayerFame(gear.getDp(), "DP");
-		HashMap<String, Role> rolesPlayer = checkPlayerRoles(guild, author);
-
-		updateTagPlayer(guild, author.getIdLong(), rolesPlayer.get("AP"), apFame, rolesPlayer.get("APAWAK"), apAwakFame,
-				rolesPlayer.get("DP"), dpFame);
 
 		// removeTagUnusable(messageReceived.getGuild());
 
@@ -67,7 +42,7 @@ public class TagController {
 	 */
 	private AdventureFame checkPlayerFame(int value, String type) {
 
-		return adventureFameService.findByValueAndType(value, type);
+		return new AdventureFame();
 	}
 
 	/**
@@ -81,52 +56,10 @@ public class TagController {
 		List<Role> roles = guild.getMember(user).getRoles();
 		HashMap<String, Role> rolesGear = new HashMap<String, Role>();
 		for (Role role : roles) {
-			Tag tag = tagService.findByIdRole(role.getId());
-			if (tag.isBotRole()) {
-				ColorBD color = colorBDService.findByRGB(role.getColor());
-				rolesGear.put(color.getName(), role);
-			}
 
 		}
 
 		return rolesGear;
-	}
-
-	
-
-	/**
-	 * Update tag player.
-	 *
-	 * @param guild the guild
-	 * @param userId the user id
-	 * @param apRole the ap role
-	 * @param apFame the ap fame
-	 * @param apAwakRole the ap awak role
-	 * @param apAwakFame the ap awak fame
-	 * @param dpRole the dp role
-	 * @param dpFame the dp fame
-	 */
-	private void updateTagPlayer(Guild guild, long userId, Role apRole, AdventureFame apFame, Role apAwakRole,
-			AdventureFame apAwakFame, Role dpRole, AdventureFame dpFame) {
-
-		if (apRole == null) {
-			applyTag(guild, userId, apFame, colorBDService.findByName("AP"));
-		} else {
-			verifyCurrentTag(guild, userId, apRole, apFame, colorBDService.findByName("AP"));
-		}
-
-		if (apAwakRole == null) {
-			applyTag(guild, userId, apAwakFame, colorBDService.findByName("APAWAK"));
-		} else {
-			verifyCurrentTag(guild, userId, apAwakRole, apAwakFame, colorBDService.findByName("APAWAK"));
-		}
-
-		if (dpRole == null) {
-			applyTag(guild, userId, dpFame, colorBDService.findByName("DP"));
-		} else {
-			verifyCurrentTag(guild, userId, dpRole, dpFame, colorBDService.findByName("DP"));
-		}
-
 	}
 
 	/**

@@ -1,12 +1,9 @@
-package com.bot.KaworiSpring.model;
-
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.kawori.model;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class AdventureFame.
  */
-@Document
 public class AdventureFame extends Model {
 
 	/** The name. */
@@ -92,7 +89,7 @@ public class AdventureFame extends Model {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
-	
+
+
 
 }

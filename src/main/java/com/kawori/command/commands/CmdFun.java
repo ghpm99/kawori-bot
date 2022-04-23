@@ -1,16 +1,12 @@
-package com.bot.KaworiSpring.discord.command.commands;
+package com.kawori.command.commands;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
-import com.bot.KaworiSpring.discord.command.Command;
-import com.bot.KaworiSpring.discord.message.EmbedPattern;
-import com.bot.KaworiSpring.discord.message.MessageController;
-import com.bot.KaworiSpring.discord.security.Permissions;
-import com.bot.KaworiSpring.service.GifBDService;
-import com.bot.KaworiSpring.util.Util;
+import com.kawori.command.Command;
+import com.kawori.message.EmbedPattern;
+import com.kawori.message.MessageController;
+import com.kawori.security.Permissions;
+import com.kawori.util.Util;
 
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
@@ -22,20 +18,18 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 /**
  * The Class CmdFun.
  */
-@Controller
+
 public class CmdFun extends Command {
 
 	/** The gif bd. */
-	@Autowired
-	private GifBDService gifBd;
-	
+
 	/** The message controller. */
-	@Autowired
-	private MessageController messageController;
-	
+
+	private MessageController messageController = new MessageController();
+
 	/** The embed pattern. */
-	@Autowired
-	private EmbedPattern embedPattern;
+
+	private EmbedPattern embedPattern = new EmbedPattern();
 
 	/**
 	 * Action.
@@ -49,8 +43,8 @@ public class CmdFun extends Command {
 		String invoke = event.getMessage().getContentDisplay().split(" ")[0].replaceFirst(Util.PREFIX, "");
 
 		String msgCouple,msgSolo,gifType;
-		
-		
+
+
 		switch (invoke) {
 		case "hug":
 			msgCouple = "msg_fun_hug_couple";
@@ -171,13 +165,13 @@ public class CmdFun extends Command {
 			msgSolo = "msg_fun_explosion_solo";
 			gifType = "EXPLOSION";
 			break;
-			
+
 		default:
 			msgCouple = "msg_fun_error";
 			msgSolo = "msg_fun_error";
 			gifType = "ERROR";
 		}
-		
+
 		sendFunny(event.getGuild(), event.getTextChannel(), event.getAuthor(), findMentioned(args, event),
 				msgCouple, msgSolo, gifType);
 
@@ -206,7 +200,7 @@ public class CmdFun extends Command {
 		return "msg_fun_help";
 	}
 
-	
+
 
 	/**
 	 * Find mentioned.
@@ -247,8 +241,8 @@ public class CmdFun extends Command {
 	private void sendFunny(Guild guild, TextChannel channel, User user1, User user2, String msgCouple, String msgSolo,
 			String typeGif) {
 		String msg = msgCouple;
-		String url = gifBd.findRandomByType(typeGif).getUrl();
-		
+		String url = "https://cdn.discordapp.com/attachments/721361526090498138/721469146730070158/14.gif";
+
 		if (user1.getIdLong() == user2.getIdLong()) {
 			msg = msgSolo;
 		}

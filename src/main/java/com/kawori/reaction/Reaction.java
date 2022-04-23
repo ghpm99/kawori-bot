@@ -1,4 +1,4 @@
-package com.bot.KaworiSpring.discord.reaction;
+package com.kawori.reaction;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -15,5 +15,5 @@ public interface Reaction {
 	 * @param isAdd the is add
 	 */
 	public void onGuildMessageReaction(String emote, String idUser, String idGuild, boolean isAdd);
-	
+
 }

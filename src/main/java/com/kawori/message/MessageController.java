@@ -1,15 +1,13 @@
-package com.bot.KaworiSpring.discord.message;
+package com.kawori.message;
 
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import com.bot.KaworiSpring.service.LanguageService;
-import com.bot.KaworiSpring.util.Util;
+import com.kawori.service.LanguageService;
+import com.kawori.util.Util;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
@@ -26,12 +24,10 @@ import net.dv8tion.jda.api.requests.ErrorResponse;
 /**
  * The Class MessageController.
  */
-@Component
 public class MessageController {
 
 	/** The language service. */
-	@Autowired
-	private LanguageService languageService;
+	private LanguageService languageService = new LanguageService();
 
 	/** The expressions. */
 	private HashMap<String, MessageValueExpression> expressions = new HashMap<>();
@@ -303,7 +299,7 @@ public class MessageController {
 	 * @param channel the channel
 	 * @param msg the msg
 	 */
-	public void sendPrivateMessage(PrivateChannel channel, String msg) {		
+	public void sendPrivateMessage(PrivateChannel channel, String msg) {
 		channel.sendMessage(msg).queue();
 	}
 

@@ -1,4 +1,4 @@
-package com.bot.KaworiSpring.model;
+package com.kawori.model;
 
 import java.util.Date;
 
@@ -10,16 +10,16 @@ public class Log extends Model {
 
 	/** The hour. */
 	private Date hour;
-	
+
 	/** The event. */
 	private String event;
-	
+
 	/** The guild. */
 	private String guild;
-	
+
 	/** The user. */
 	private String user;
-	
+
 	/** The status. */
 	private String status;
 

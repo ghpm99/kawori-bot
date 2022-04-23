@@ -1,12 +1,10 @@
-package com.bot.KaworiSpring.discord.command.commands;
+package com.kawori.command.commands;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
-import com.bot.KaworiSpring.discord.command.Command;
-import com.bot.KaworiSpring.discord.message.MessageController;
-import com.bot.KaworiSpring.discord.security.Permissions;
-import com.bot.KaworiSpring.service.LanguageService;
+import com.kawori.command.Command;
+import com.kawori.message.MessageController;
+import com.kawori.security.Permissions;
+import com.kawori.service.LanguageService;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -14,15 +12,15 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 /**
  * The Class CmdRegion.
  */
-@Controller
+
 public class CmdRegion extends Command {
 
 	/** The message controller. */
-	@Autowired
+
 	private MessageController messageController;
-	
+
 	/** The language service. */
-	@Autowired
+
 	private LanguageService languageService;
 
 	/**

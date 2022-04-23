@@ -1,4 +1,4 @@
-package com.bot.KaworiSpring.util;
+package com.kawori.util;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -14,19 +14,19 @@ public enum Emojis {
  FIVE(5, "5️⃣"), /** The six. */
  SIX(6, "6️⃣"), /** The seven. */
  SEVEN(7, "7️⃣"),
-	
+
 	/** The eight. */
-	EIGHT(8, "8️⃣"), 
+	EIGHT(8, "8️⃣"),
  /** The nine. */
- NINE(9, "9️⃣"), 
+ NINE(9, "9️⃣"),
  /** The ten. */
- TEN(10, ""), 
+ TEN(10, ""),
  /** The zero. */
- ZERO(0, "0️⃣"), 
+ ZERO(0, "0️⃣"),
  /** The check ok. */
- CHECK_OK(11, "✅"), 
+ CHECK_OK(11, "✅"),
  /** The cancel. */
- CANCEL(12, "❎"), 
+ CANCEL(12, "❎"),
  /** The back. */
  BACK(13,"🔙"),
 /** The first. */
@@ -36,7 +36,7 @@ NEXT(15,"🔜");
 
 	/** The id. */
 	private int id;
-	
+
 	/** The emoji. */
 	private String emoji;
 

@@ -1,4 +1,4 @@
-package com.bot.KaworiSpring.util;
+package com.kawori.util;
 
 import net.dv8tion.jda.api.entities.Emote;
 
@@ -10,7 +10,7 @@ public class Util {
 
 	/** The prefix. */
 	public static String PREFIX = "";
-	
+
 	/** The prefixautorole. */
 	public static String PREFIXAUTOROLE = "";
 
@@ -29,17 +29,17 @@ public class Util {
 		else
 			return "<:" + emote.getName() + ":" + emote.getId() + ">";
 	}
-	
-	
+
+
 	/** The id user adm. */
 	public static String idUserAdm = "402432288362856448";
-	
+
 	/** The id guild adm. */
 	public static String idGuildAdm = "622269870788050946";
-	
+
 	/** The id log channel. */
 	public static String idLogChannel= "713069346506670180";
-	
+
 	/**
 	 * Calculate gear score.
 	 *

@@ -1,9 +1,7 @@
-package com.bot.KaworiSpring.discord.listener;
+package com.kawori.listener;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
-import com.bot.KaworiSpring.discord.controller.OperatorController;
+import com.kawori.controller.OperatorController;
 
 import net.dv8tion.jda.api.events.user.update.UserUpdateDiscriminatorEvent;
 import net.dv8tion.jda.api.events.user.update.UserUpdateNameEvent;
@@ -21,13 +19,13 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
  *
  * @see UserEvent
  */
-@Controller
+
 public class UserListener extends ListenerAdapter {
-	
+
 	/** The operator controller. */
-	@Autowired
-	private OperatorController operatorController;
-	
+
+	private OperatorController operatorController = new OperatorController();
+
 	/**
 	 * On user update name.
 	 *
@@ -38,9 +36,9 @@ public class UserListener extends ListenerAdapter {
 		// TODO Auto-generated method stub
 		super.onUserUpdateName(event);
 		operatorController.onUserUpdateName(event.getUser().getId(), event.getNewName());
-		
+
 	}
-	
+
 	/**
 	 * On user update discriminator.
 	 *
@@ -52,6 +50,6 @@ public class UserListener extends ListenerAdapter {
 		super.onUserUpdateDiscriminator(event);
 		operatorController.onUserUpdateDiscriminator(event.getUser().getId(), event.getNewDiscriminator());
 	}
-	
+
 
 }

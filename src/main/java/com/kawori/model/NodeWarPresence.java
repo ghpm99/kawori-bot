@@ -1,25 +1,23 @@
-package com.bot.KaworiSpring.model;
+package com.kawori.model;
 
 import java.util.Date;
 
-import org.springframework.data.mongodb.core.mapping.Document;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class NodeWarPresence.
  */
-@Document
 public class NodeWarPresence extends Model{
-	
+
 	/** The presence time. */
 	private Date presenceTime;
-		
+
 	/** The id node war. */
 	private String idNodeWar;
-	
+
 	/** The id user. */
 	private String idUser;
-	
+
 	/** The id guild. */
 	private String idGuild;
 
@@ -95,6 +93,6 @@ public class NodeWarPresence extends Model{
 		this.idGuild = idGuild;
 	}
 
-		
-	
+
+
 }

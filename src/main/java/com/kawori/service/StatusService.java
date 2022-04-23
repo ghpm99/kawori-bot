@@ -3,12 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bot.KaworiSpring.service;
+package com.kawori.service;
 
 import java.time.ZonedDateTime;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -16,16 +13,9 @@ import org.springframework.stereotype.Service;
  *
  * @author ghpm9
  */
-@Service
+
 public class StatusService {
-	
-	/** The guilda service. */
-	@Autowired
-	private GuildaService guildaService;
-	
-	/** The operator service. */
-	@Autowired
-	private OperatorService operatorService;
+
 
     /** The status bot. */
     private String statusBot = "-";
@@ -35,7 +25,7 @@ public class StatusService {
 
     /** The cmd received. */
     private long cmdReceived = 0;
-    
+
 
     /**
      * Gets the status bot.
@@ -78,24 +68,24 @@ public class StatusService {
      */
     public void increaseCmdReceived() {
         this.cmdReceived++;
-    }    
-    
+    }
+
     /**
      * Gets the guild count.
      *
      * @return the guild count
      */
     public long getGuildCount() {
-    	return guildaService.count();
+    	return 0;
     }
-    
+
     /**
      * Gets the user count.
      *
      * @return the user count
      */
     public long getUserCount() {
-    	return operatorService.count();
+    	return 0;
     }
-    
+
 }

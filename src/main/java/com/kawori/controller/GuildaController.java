@@ -1,23 +1,14 @@
-package com.bot.KaworiSpring.discord.controller;
+package com.kawori.controller;
 
 import java.awt.Color;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
-import com.bot.KaworiSpring.discord.message.MessageController;
-import com.bot.KaworiSpring.model.AdventureFame;
-import com.bot.KaworiSpring.model.ColorBD;
-import com.bot.KaworiSpring.model.Guilda;
-import com.bot.KaworiSpring.model.Membro;
-import com.bot.KaworiSpring.model.Tag;
-import com.bot.KaworiSpring.service.AdventureFameService;
-import com.bot.KaworiSpring.service.CanalService;
-import com.bot.KaworiSpring.service.ColorBDService;
-import com.bot.KaworiSpring.service.GuildaService;
-import com.bot.KaworiSpring.service.MembroService;
-import com.bot.KaworiSpring.service.TagService;
+import com.kawori.message.MessageController;
+import com.kawori.model.AdventureFame;
+import com.kawori.model.ColorBD;
+import com.kawori.model.Guilda;
+import com.kawori.model.Membro;
+import com.kawori.model.Tag;
 
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Guild;
@@ -34,39 +25,13 @@ import net.dv8tion.jda.api.events.role.update.RoleUpdatePermissionsEvent;
 /**
  * The Class GuildaController.
  */
-@Controller
+
 public class GuildaController {
 
 	/** The tag service. */
-	@Autowired
-	private TagService tagService;
-	
-	/** The membro service. */
-	@Autowired
-	private MembroService membroService;
-	
-	/** The color BD service. */
-	@Autowired
-	private ColorBDService colorBDService;
-	
-	/** The adventure fame service. */
-	@Autowired
-	private AdventureFameService adventureFameService;
-	
-	/** The operator controller. */
-	@Autowired
-	private OperatorController operatorController;
-	
-	/** The guilda service. */
-	@Autowired
-	private GuildaService guildaService;
-	
-	/** The canal service. */
-	@Autowired
-	private CanalService canalService;
-	
+
 	/** The message controller. */
-	@Autowired
+
 	private MessageController messageController;
 
 	/**
@@ -84,10 +49,6 @@ public class GuildaController {
 		membro.setNick(member.getNickname());
 
 		membro.setFamilyName(member.getUser().getName());
-
-		operatorController.updateOperator(member.getUser());
-
-		membroService.save(membro);
 
 		//sendMessageOnJoin(guild, member);
 
@@ -107,8 +68,6 @@ public class GuildaController {
 		membro.setHero(false);
 		membro.setNovice(false);
 
-		membroService.save(membro);
-
 	}
 
 	/**
@@ -119,13 +78,8 @@ public class GuildaController {
 	 * @return the membro
 	 */
 	public Membro findMember(String id, String idGuild) {
-		Membro membro = membroService.findByIdAndIdGuild(id, idGuild);
-		if (membro.isNewRecord()) {
-			membro = new Membro();
-			membro.setIdGuild(idGuild);
-			membro.setIdUser(id);
-		}
-		return membro;
+
+		return null;
 	}
 
 	/**
@@ -134,10 +88,6 @@ public class GuildaController {
 	 * @param event the event
 	 */
 	public void onRoleCreate(RoleCreateEvent event) {
-		// TODO Auto-generated method stub
-		Tag tag = createNewTag(event.getGuild(), event.getRole());
-
-		tagService.save(tag);
 
 	}
 
@@ -147,17 +97,7 @@ public class GuildaController {
 	 * @param event the event
 	 */
 	public void onRoleUpdatePermissions(RoleUpdatePermissionsEvent event) {
-		// TODO Auto-generated method stub
-		Tag tag = tagService.findByIdRole(event.getRole().getId());
-		if (tag.isNewRecord()) {
-			tag = createNewTag(event.getGuild(), event.getRole());
 
-			tagService.save(tag);
-		} else {
-			setPermission(tag, event.getRole());
-
-			tagService.save(tag);
-		}
 
 	}
 
@@ -168,10 +108,7 @@ public class GuildaController {
 	 * @param newName the new name
 	 */
 	public void onRoleUpdateName(String id, String newName) {
-		Tag tag = tagService.findByIdRole(id);
-		tag.setName(newName);
 
-		tagService.save(tag);
 	}
 
 	/**
@@ -180,11 +117,7 @@ public class GuildaController {
 	 * @param event the event
 	 */
 	public void onRoleDelete(RoleDeleteEvent event) {
-		// TODO Auto-generated method stub
-		Tag tag = tagService.findByIdRole(event.getRole().getId());
-		if (!tag.isNewRecord()) {
-			tagService.delete(tag);
-		}
+
 	}
 
 	/**
@@ -194,10 +127,7 @@ public class GuildaController {
 	 * @param newName the new name
 	 */
 	public void onGuildUpdateName(String id, String newName) {
-		Guilda guilda = guildaService.findById(id);
-		guilda.setName(newName);
 
-		guildaService.save(guilda);
 	}
 
 	/**
@@ -207,10 +137,7 @@ public class GuildaController {
 	 * @param idNewOwner the id new owner
 	 */
 	public void onGuildUpdateOwner(String id, String idNewOwner) {
-		Guilda guilda = guildaService.findById(id);
-		guilda.setIdOwner(idNewOwner);
 
-		guildaService.save(guilda);
 	}
 
 	/**
@@ -275,13 +202,7 @@ public class GuildaController {
 	 * @param guild the guild
 	 */
 	public void updateGuildTag(Guild guild) {
-		for (Role role : guild.getRoles()) {
 
-			Tag tag = tagService.findByIdRole(role.getId());
-			if (tag.isNewRecord()) {
-				tagService.save(createNewTag(guild, role));
-			}
-		}
 	}
 
 	/**
@@ -292,11 +213,6 @@ public class GuildaController {
 	 * @return true, if is tag
 	 */
 	public boolean isTag(String name, Color color) {
-		ColorBD colorbd = colorBDService.findByRGB(color);
-
-		if (!colorbd.isNewRecord()) {
-			return verifyIsTag(name, colorbd.getName());
-		}
 
 		return false;
 	}
@@ -309,9 +225,7 @@ public class GuildaController {
 	 * @return true, if successful
 	 */
 	private boolean verifyIsTag(String roleName, String type) {
-		AdventureFame temp = adventureFameService.findByTypeAndName(type, roleName);
-		if (!temp.isNewRecord())
-			return true;
+
 		return false;
 	}
 
@@ -322,13 +236,7 @@ public class GuildaController {
 	 * @param member the member
 	 */
 	private void sendMessageOnJoin(Guild guild, Member member) {
-		Guilda guilda = guildaService.findById(guild.getId());
-		MessageChannel channel = guild.getDefaultChannel();
-		if (channel == null)
-			return;
-		String message = guilda.getDefaultWelcomeMessage();
 
-		messageController.sendMessageSingle(guild, channel, member.getUser(), message);
 
 	}
 
@@ -339,9 +247,7 @@ public class GuildaController {
 	 * @param newNick the new nick
 	 */
 	public void onGuildMemberUpdateNickname(Member member, String newNick) {
-		Membro membro = findMember(member.getId(), member.getGuild().getId());
-		membro.setNick(newNick);
-		membroService.save(membro);
+
 	}
 
 	/**
@@ -361,7 +267,7 @@ public class GuildaController {
 	 * @param event the event
 	 */
 	public void onTextChannelCreate(TextChannel event) {
-		canalService.createNew(event);
+
 
 	}
 
@@ -371,7 +277,7 @@ public class GuildaController {
 	 * @param event the event
 	 */
 	public void onTextChannelUpdateName(TextChannel event) {
-		canalService.UpdateCanal(event);
+
 	}
 
 	/**
@@ -382,16 +288,6 @@ public class GuildaController {
 	 * @param member the member
 	 */
 	public void onGuildMemberRoleAdd(Guild guild, List<Role> roles, Member member) {
-		Membro membro = membroService.findByIdAndIdGuild(member.getId(), guild.getId());
-		boolean canGear = membro.isGear();
-
-		for (Role role : roles) {
-			Tag tag = tagService.findByIdGuildAndIdRole(role.getGuild().getId(), role.getId());
-			canGear = canGear || tag.isCmdBuild();
-		}
-
-		membro.setGear(canGear);
-		membroService.save(membro);
 
 	}
 
@@ -403,14 +299,7 @@ public class GuildaController {
 	 * @param member the member
 	 */
 	public void onGuildMemberRoleRemove(Guild guild, List<Role> roles, Member member) {
-		Membro membro = membroService.findByIdAndIdGuild(member.getId(), guild.getId());
-		boolean canGear = false;
-		for (Role role : member.getRoles()) {
-			Tag tag = tagService.findByIdGuildAndIdRole(guild.getId(), role.getId());
-			canGear = canGear || tag.isCmdBuild();
-		}
-		membro.setGear(canGear);
-		membroService.save(membro);
+
 
 	}
 

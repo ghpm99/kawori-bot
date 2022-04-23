@@ -1,4 +1,4 @@
-package com.bot.KaworiSpring.discord.reaction;
+package com.kawori.reaction;
 
 import java.util.HashMap;
 
@@ -10,10 +10,10 @@ public class ReactionHandler {
 
 	/** The reactions. */
 	public static HashMap<String, Reaction> reactions = new HashMap<String, Reaction>();
-	
+
 	/** The reactions private. */
 	public static HashMap<String, ReactionPrivate> reactionsPrivate = new HashMap<>();
-	
-	
-	
+
+
+
 }

@@ -1,16 +1,13 @@
-package com.bot.KaworiSpring.discord.listener;
+package com.kawori.listener;
 
-import org.springframework.stereotype.Controller;
 
-import com.bot.KaworiSpring.discord.reaction.ReactionHandler;
-import com.bot.KaworiSpring.service.EventService;
+import com.kawori.reaction.ReactionHandler;
 
 import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent;
 import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionRemoveEvent;
 import net.dv8tion.jda.api.events.message.priv.react.PrivateMessageReactionAddEvent;
 import net.dv8tion.jda.api.events.message.priv.react.PrivateMessageReactionRemoveEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -24,12 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @see ReactionEvent
  */
-@Controller
-public class ReactionListener extends ListenerAdapter {
 
-	/** The event service. */
-	@Autowired
-	private EventService eventService;
+public class ReactionListener extends ListenerAdapter {
 
 	/**
 	 * On guild message reaction add.
@@ -38,8 +31,6 @@ public class ReactionListener extends ListenerAdapter {
 	 */
 	@Override
 	public void onGuildMessageReactionAdd(GuildMessageReactionAddEvent event) {
-
-		eventService.guildReactionEvent(event.getUserId(), event.getGuild().getId());
 
 		if (ReactionHandler.reactions.containsKey(event.getMessageId())) {
 			ReactionHandler.reactions.get(event.getMessageId()).onGuildMessageReaction(
@@ -76,7 +67,7 @@ public class ReactionListener extends ListenerAdapter {
 			ReactionHandler.reactionsPrivate.get(event.getMessageId()).onPrivateMessageReaction(event.getReactionEmote().getName(), event.getUserId(), true);
 		}
 	}
-	
+
 	/**
 	 * On private message reaction remove.
 	 *

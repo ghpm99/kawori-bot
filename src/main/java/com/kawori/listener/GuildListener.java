@@ -1,9 +1,6 @@
-package com.bot.KaworiSpring.discord.listener;
+package com.kawori.listener;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
-import com.bot.KaworiSpring.discord.controller.GuildaController;
+import com.kawori.controller.GuildaController;
 
 import net.dv8tion.jda.api.events.channel.text.TextChannelCreateEvent;
 import net.dv8tion.jda.api.events.channel.text.update.TextChannelUpdateNameEvent;
@@ -32,12 +29,12 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
  *
  * @see GuildEvent
  */
-@Controller
+
 public class GuildListener extends ListenerAdapter {
 
 	/** The guilda controller. */
-	@Autowired
-	private GuildaController guildaController;
+
+	private GuildaController guildaController = new GuildaController();
 
 	/**
 	 * On guild member join.

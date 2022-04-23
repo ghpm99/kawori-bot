@@ -1,4 +1,4 @@
-package com.bot.KaworiSpring.discord.command;
+package com.kawori.command;
 
 import java.util.HashMap;
 

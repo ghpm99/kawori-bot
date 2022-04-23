@@ -3,17 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bot.KaworiSpring.discord.command.commands;
+package com.kawori.command.commands;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
-import com.bot.KaworiSpring.discord.command.Command;
-import com.bot.KaworiSpring.discord.message.EmbedPattern;
-import com.bot.KaworiSpring.discord.message.MessageController;
-import com.bot.KaworiSpring.discord.security.Permissions;
+import com.kawori.command.Command;
+import com.kawori.message.EmbedPattern;
+import com.kawori.message.MessageController;
+import com.kawori.security.Permissions;
 
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
@@ -25,15 +22,15 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
  *
  * @author ghpm9
  */
-@Controller
+
 public class CmdAvatar extends Command {
 
 	/** The message controller. */
-	@Autowired
+
 	private MessageController messageController;
-	
+
 	/** The embed pattern. */
-	@Autowired
+
 	private EmbedPattern embedPattern;
 
 	/**
@@ -78,7 +75,7 @@ public class CmdAvatar extends Command {
 		return "msg_avatar_help";
 	}
 
-	
+
 	/**
 	 * Help short.
 	 *

@@ -1,17 +1,6 @@
-package com.bot.KaworiSpring.discord.security;
+package com.kawori.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
-import com.bot.KaworiSpring.model.Canal;
-import com.bot.KaworiSpring.model.Guilda;
-import com.bot.KaworiSpring.model.Operator;
-import com.bot.KaworiSpring.model.Tag;
-import com.bot.KaworiSpring.service.CanalService;
-import com.bot.KaworiSpring.service.GuildaService;
-import com.bot.KaworiSpring.service.OperatorService;
-import com.bot.KaworiSpring.service.TagService;
-import com.bot.KaworiSpring.util.Util;
+import com.kawori.util.Util;
 
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
@@ -24,24 +13,8 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 /**
  * The Class SecurityCommand.
  */
-@Controller
 public class SecurityCommand {
 
-	/** The canal service. */
-	@Autowired
-	private CanalService canalService;
-
-	/** The operator service. */
-	@Autowired
-	private OperatorService operatorService;
-
-	/** The guilda service. */
-	@Autowired
-	private GuildaService guildaService;
-
-	/** The tag service. */
-	@Autowired
-	private TagService tagService;
 
 	/**
 	 * Authenticate command.
@@ -76,8 +49,7 @@ public class SecurityCommand {
 	 * @return true, if successful
 	 */
 	private boolean verifyCanSpeak(TextChannel channel) {
-		Canal canal = canalService.findById(channel.getId());
-		return canal.isSendMessage();
+		return true;
 	}
 
 	/**
@@ -104,32 +76,7 @@ public class SecurityCommand {
 	 * @return true, if successful
 	 */
 	private boolean verifyRole(Role role, Permissions permission) {
-		Tag tag = tagService.findByIdRole(role.getId());
-		switch (permission) {
-		case CMD_ADM: {
-			return tag.isCmdAdm();
-		}
-		case CMD_BUILD: {
-			return tag.isCmdBuild();
-		}
-		case CMD_DEV: {
-			return false;
-		}
-		case CMD_FUN: {
-			return tag.isCmdFun();
-		}
-		case CMD_NW: {
-			return tag.isCmdNodeWar();
-		}
-		case CMD_RANK: {
-			return tag.isCmdRank();
-		}
-		case CMD_UTIL: {
-			return tag.isCmdUtil();
-		}
-		default:
-			throw new IllegalArgumentException("Unexpected value: " + permission);
-		}
+		return true;
 
 	}
 
@@ -140,9 +87,7 @@ public class SecurityCommand {
 	 * @return true, if successful
 	 */
 	private boolean verifyIsUserBanned(User user) {
-		Operator operator = operatorService.findById(user.getId());
-
-		return operator.isBanned();
+		return false;
 	}
 
 	/**
@@ -152,9 +97,7 @@ public class SecurityCommand {
 	 * @return true, if successful
 	 */
 	private boolean verifyIsGuildBanned(Guild guild) {
-		Guilda guilda = guildaService.findById(guild.getId());
-
-		return guilda.isBlock();
+		return false;
 	}
 
 	/**

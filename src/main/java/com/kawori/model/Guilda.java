@@ -1,14 +1,11 @@
-package com.bot.KaworiSpring.model;
-
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.kawori.model;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class Guilda.
  */
-@Document(collection =  "guild")
-public class Guilda extends Model{	
-	
+public class Guilda extends Model{
+
 	/** The name. */
 	private String name;
 
@@ -302,5 +299,5 @@ public class Guilda extends Model{
 	public void increaseExp(int exp) {
 		setExp(getExp() + exp);
 	}
-	
+
 }

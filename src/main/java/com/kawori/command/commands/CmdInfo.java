@@ -1,18 +1,13 @@
-package com.bot.KaworiSpring.discord.command.commands;
+package com.kawori.command.commands;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
-import com.bot.KaworiSpring.discord.command.Command;
-import com.bot.KaworiSpring.discord.message.EmbedPattern;
-import com.bot.KaworiSpring.discord.message.MessageController;
-import com.bot.KaworiSpring.discord.security.Permissions;
-import com.bot.KaworiSpring.model.Gear;
-import com.bot.KaworiSpring.model.Membro;
-import com.bot.KaworiSpring.model.Personagem;
-import com.bot.KaworiSpring.service.GearService;
-import com.bot.KaworiSpring.service.MembroService;
-import com.bot.KaworiSpring.service.PersonagemService;
+import com.kawori.command.Command;
+import com.kawori.message.EmbedPattern;
+import com.kawori.message.MessageController;
+import com.kawori.model.Gear;
+import com.kawori.model.Membro;
+import com.kawori.model.Personagem;
+import com.kawori.security.Permissions;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -20,27 +15,16 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 /**
  * The Class CmdInfo.
  */
-@Controller
+
 public class CmdInfo extends Command {
 
-	/** The membro service. */
-	@Autowired
-	private MembroService membroService;
-	
-	/** The personagem service. */
-	@Autowired
-	private PersonagemService personagemService;
-	
-	/** The gear service. */
-	@Autowired
-	private GearService gearService;
-	
+
 	/** The message controller. */
-	@Autowired
+
 	private MessageController messageController;
-	
+
 	/** The embed pattern. */
-	@Autowired
+
 	private EmbedPattern embedPattern;
 
 	/**
@@ -52,15 +36,14 @@ public class CmdInfo extends Command {
 	@Override
 	public void action(String[] args, MessageReceivedEvent event) {
 		// TODO Auto-generated method stub
-		Membro membro = membroService.findByIdAndIdGuild(event.getAuthor().getId(), event.getGuild().getId());
-		Personagem personagem = personagemService.findByMembroIdAndAtivo(membro.getIdUser(), true);
-		Gear gear = gearService.findByIdUserIdGuildIsAtivo(event.getMember().getId(), event.getGuild().getId(),
-				true);
+		Membro membro = new Membro();
+		Personagem personagem = new Personagem();
+		Gear gear = new Gear();
 		String familyName = "null";
 		String personagemName = "null";
 		String gearName = "null";
 
-		if (membro != null) {			
+		if (membro != null) {
 			familyName = membro.getFamilyName();
 		}
 
@@ -68,7 +51,7 @@ public class CmdInfo extends Command {
 			personagemName = personagem.getName();
 		}
 
-		if (gear != null) {			
+		if (gear != null) {
 			gearName = String.valueOf(gear.getScore());
 		}
 
@@ -99,7 +82,7 @@ public class CmdInfo extends Command {
 		return "msg_info_help";
 	}
 
-	
+
 
 	/**
 	 * Help short.

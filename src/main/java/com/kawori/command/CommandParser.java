@@ -1,8 +1,8 @@
-package com.bot.KaworiSpring.discord.command;
+package com.kawori.command;
 
 import java.util.ArrayList;
 
-import com.bot.KaworiSpring.util.Util;
+import com.kawori.util.Util;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -42,19 +42,19 @@ public class CommandParser {
 
 		/** The raw. */
 		public final String raw;
-		
+
 		/** The beheaded. */
 		public final String beheaded;
-		
+
 		/** The split beheaded. */
 		public final String[] splitBeheaded;
-		
+
 		/** The invoke. */
 		public final String invoke;
-		
+
 		/** The args. */
 		public final String[] args;
-		
+
 		/** The event. */
 		public final MessageReceivedEvent event;
 
