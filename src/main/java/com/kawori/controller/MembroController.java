@@ -3,7 +3,6 @@ package com.kawori.controller;
 import java.util.List;
 
 import com.kawori.model.Membro;
-import com.kawori.model.Tag;
 
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;

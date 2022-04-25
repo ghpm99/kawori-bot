@@ -1,7 +1,8 @@
-package com.kawori.command.commands;
+package com.kawori.app.info.command;
 
 
 import com.kawori.command.Command;
+import com.kawori.command.CommandHandler;
 import com.kawori.message.EmbedPattern;
 import com.kawori.message.MessageController;
 import com.kawori.model.Gear;
@@ -16,16 +17,19 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
  * The Class CmdInfo.
  */
 
-public class CmdInfo extends Command {
+public class Info extends Command {
 
+	public Info(){
+		CommandHandler.commands.put("info", this);
+	}
 
 	/** The message controller. */
 
-	private MessageController messageController;
+	private MessageController messageController = new MessageController();
 
 	/** The embed pattern. */
 
-	private EmbedPattern embedPattern;
+	private EmbedPattern embedPattern = new EmbedPattern();
 
 	/**
 	 * Action.

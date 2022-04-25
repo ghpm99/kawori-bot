@@ -2,13 +2,13 @@ package com.kawori;
 
 import javax.security.auth.login.LoginException;
 
+import com.kawori.app.achievements.command.Achievements;
+import com.kawori.app.avatar.command.Avatar;
+import com.kawori.app.fun.command.Fun;
+import com.kawori.app.help.command.Help;
+import com.kawori.app.info.command.Info;
+import com.kawori.app.pick.command.Pick;
 import com.kawori.command.CommandHandler;
-import com.kawori.command.commands.CmdAchievements;
-import com.kawori.command.commands.CmdAvatar;
-import com.kawori.command.commands.CmdFun;
-import com.kawori.command.commands.CmdHelp;
-import com.kawori.command.commands.CmdInfo;
-import com.kawori.command.commands.CmdPick;
 import com.kawori.command.commands.CmdRegion;
 import com.kawori.listener.BotListener;
 import com.kawori.listener.GuildListener;
@@ -61,20 +61,20 @@ public class Main{
     }
 
     /** The cmd help. */
-    private CmdHelp cmdHelp = new CmdHelp();
+    private Help cmdHelp = new Help();
 
     /** The cmd pick. */
-    private CmdPick cmdPick = new CmdPick();
+    private Pick cmdPick = new Pick();
 
     /** The cmd avatar. */
-    private CmdAvatar cmdAvatar = new CmdAvatar();
+    private Avatar cmdAvatar = new Avatar();
 
     /** The cmd fun. */
-    private CmdFun cmdFun = new CmdFun();
+    private Fun cmdFun = new Fun();
 
 
     /** The cmd info. */
-    private CmdInfo cmdInfo = new CmdInfo();
+    private Info cmdInfo = new Info();
 
 
     /** The cmd region. */
@@ -82,7 +82,7 @@ public class Main{
 
 
     /** The cmd achievements. */
-    private CmdAchievements cmdAchievements = new CmdAchievements();
+    private Achievements cmdAchievements = new Achievements();
 
     /** The ready listener. */
     // Eventos Listeners
@@ -129,7 +129,7 @@ public class Main{
     private void setCommands() {
         // util
         CommandHandler.commands.put("help", cmdHelp);
-        CommandHandler.commands.put("info", cmdInfo);
+
         CommandHandler.commands.put("region", cmdRegion);
         CommandHandler.commands.put("achievements", cmdAchievements);
 

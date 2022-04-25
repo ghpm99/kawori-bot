@@ -1,4 +1,4 @@
-package com.kawori.command.commands;
+package com.kawori.app.achievements.command;
 
 
 import com.kawori.command.Command;
@@ -10,7 +10,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 /**
  * The Class CmdAchievements.
  */
-public class CmdAchievements extends Command{
+public class Achievements extends Command{
 
 	/**
 	 * Action.

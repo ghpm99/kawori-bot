@@ -1,4 +1,4 @@
-package com.kawori.command.commands;
+package com.kawori.app.fun.command;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
  * The Class CmdFun.
  */
 
-public class CmdFun extends Command {
+public class Fun extends Command {
 
 	/** The gif bd. */
 

@@ -1,4 +1,4 @@
-package com.kawori.command.commands;
+package com.kawori.app.help.command;
 
 import com.kawori.command.Command;
 import com.kawori.command.CommandHandler;
@@ -17,7 +17,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
  * The Class CmdHelp.
  */
 
-public class CmdHelp extends Command {
+public class Help extends Command {
 
 	/** The message controller. */
 
