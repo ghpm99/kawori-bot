@@ -8,6 +8,7 @@ package com.kawori.app.pick.command;
 import java.util.Random;
 
 import com.kawori.command.Command;
+import com.kawori.command.CommandHandler;
 import com.kawori.message.MessageController;
 import com.kawori.security.Permissions;
 import com.kawori.util.Util;
@@ -21,6 +22,10 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
  * @author ghpm9
  */
 public class Pick extends Command {
+
+	public Pick() {
+		CommandHandler.commands.put("pick", this);
+	}
 
 	/** The message controller. */
 	private MessageController messageController;

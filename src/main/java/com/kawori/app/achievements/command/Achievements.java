@@ -2,6 +2,7 @@ package com.kawori.app.achievements.command;
 
 
 import com.kawori.command.Command;
+import com.kawori.command.CommandHandler;
 import com.kawori.security.Permissions;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -11,6 +12,10 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
  * The Class CmdAchievements.
  */
 public class Achievements extends Command{
+
+	public Achievements() {
+		CommandHandler.commands.put("achievements", this);
+	}
 
 	/**
 	 * Action.

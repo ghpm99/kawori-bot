@@ -2,6 +2,7 @@ package com.kawori.command.commands;
 
 
 import com.kawori.command.Command;
+import com.kawori.command.CommandHandler;
 import com.kawori.message.MessageController;
 import com.kawori.security.Permissions;
 import com.kawori.service.LanguageService;
@@ -14,6 +15,10 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
  */
 
 public class CmdRegion extends Command {
+
+	public CmdRegion() {
+		CommandHandler.commands.put("region", this);
+	}
 
 	/** The message controller. */
 

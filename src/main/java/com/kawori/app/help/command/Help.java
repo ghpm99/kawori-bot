@@ -19,6 +19,10 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class Help extends Command {
 
+	public Help() {
+		CommandHandler.commands.put("help", this);
+	}
+
 	/** The message controller. */
 
 	private MessageController messageController;

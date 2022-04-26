@@ -3,6 +3,7 @@ package com.kawori.app.fun.command;
 import java.util.List;
 
 import com.kawori.command.Command;
+import com.kawori.command.CommandHandler;
 import com.kawori.message.EmbedPattern;
 import com.kawori.message.MessageController;
 import com.kawori.security.Permissions;
@@ -21,6 +22,29 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class Fun extends Command {
 
+	public Fun() {
+		CommandHandler.commands.put("hug", this);
+		CommandHandler.commands.put("slap", this);
+		CommandHandler.commands.put("nom", this);
+		CommandHandler.commands.put("cuddle", this);
+		CommandHandler.commands.put("kiss", this);
+		CommandHandler.commands.put("bite", this);
+		CommandHandler.commands.put("dance", this);
+		CommandHandler.commands.put("awoo", this);
+		CommandHandler.commands.put("owo", this);
+		CommandHandler.commands.put("poke", this);
+		CommandHandler.commands.put("lewd", this);
+		CommandHandler.commands.put("blush", this);
+		CommandHandler.commands.put("confused", this);
+		CommandHandler.commands.put("cry", this);
+		CommandHandler.commands.put("sad", this);
+		CommandHandler.commands.put("pat", this);
+		CommandHandler.commands.put("fox", this);
+		CommandHandler.commands.put("punch", this);
+		CommandHandler.commands.put("trap", this);
+		CommandHandler.commands.put("explosion", this);
+	}
+
 	/** The gif bd. */
 
 	/** The message controller. */
@@ -34,7 +58,7 @@ public class Fun extends Command {
 	/**
 	 * Action.
 	 *
-	 * @param args the args
+	 * @param args  the args
 	 * @param event the event
 	 */
 	@Override
@@ -42,134 +66,133 @@ public class Fun extends Command {
 		// TODO Auto-generated method stub
 		String invoke = event.getMessage().getContentDisplay().split(" ")[0].replaceFirst(Util.PREFIX, "");
 
-		String msgCouple,msgSolo,gifType;
-
+		String msgCouple, msgSolo, gifType;
 
 		switch (invoke) {
-		case "hug":
-			msgCouple = "msg_fun_hug_couple";
-			msgSolo = "msg_fun_hug_solo";
-			gifType = "HUG";
-			break;
+			case "hug":
+				msgCouple = "msg_fun_hug_couple";
+				msgSolo = "msg_fun_hug_solo";
+				gifType = "HUG";
+				break;
 
-		case "slap":
-			msgCouple = "msg_fun_slap_couple";
-			msgSolo = "msg_fun_slap_solo";
-			gifType = "SLAP";
-			break;
+			case "slap":
+				msgCouple = "msg_fun_slap_couple";
+				msgSolo = "msg_fun_slap_solo";
+				gifType = "SLAP";
+				break;
 
-		case "nom":
-			msgCouple = "msg_fun_nom_couple";
-			msgSolo = "msg_fun_nom_solo";
-			gifType = "NOM";
-			break;
+			case "nom":
+				msgCouple = "msg_fun_nom_couple";
+				msgSolo = "msg_fun_nom_solo";
+				gifType = "NOM";
+				break;
 
-		case "cuddle":
-			msgCouple = "msg_fun_cuddle_couple";
-			msgSolo = "msg_fun_cuddle_solo";
-			gifType = "CUDDLE";
-			break;
+			case "cuddle":
+				msgCouple = "msg_fun_cuddle_couple";
+				msgSolo = "msg_fun_cuddle_solo";
+				gifType = "CUDDLE";
+				break;
 
-		case "kiss":
-			msgCouple = "msg_fun_kiss_couple";
-			msgSolo = "msg_fun_kiss_solo";
-			gifType = "KISS";
-			break;
+			case "kiss":
+				msgCouple = "msg_fun_kiss_couple";
+				msgSolo = "msg_fun_kiss_solo";
+				gifType = "KISS";
+				break;
 
-		case "bite":
-			msgCouple = "msg_fun_bite_couple";
-			msgSolo = "msg_fun_bite_solo";
-			gifType = "BITE";
-			break;
+			case "bite":
+				msgCouple = "msg_fun_bite_couple";
+				msgSolo = "msg_fun_bite_solo";
+				gifType = "BITE";
+				break;
 
-		case "dance":
-			msgCouple = "msg_fun_dance_couple";
-			msgSolo = "msg_fun_dance_solo";
-			gifType = "DANCE";
-			break;
+			case "dance":
+				msgCouple = "msg_fun_dance_couple";
+				msgSolo = "msg_fun_dance_solo";
+				gifType = "DANCE";
+				break;
 
-		case "awoo":
-			msgCouple = "msg_fun_awoo_couple";
-			msgSolo = "msg_fun_awoo_solo";
-			gifType = "AWOO";
-			break;
+			case "awoo":
+				msgCouple = "msg_fun_awoo_couple";
+				msgSolo = "msg_fun_awoo_solo";
+				gifType = "AWOO";
+				break;
 
-		case "owo":
-			msgCouple = "msg_fun_owo_couple";
-			msgSolo = "msg_fun_owo_solo";
-			gifType = "OWO";
-			break;
+			case "owo":
+				msgCouple = "msg_fun_owo_couple";
+				msgSolo = "msg_fun_owo_solo";
+				gifType = "OWO";
+				break;
 
-		case "poke":
-			msgCouple = "msg_fun_poke_couple";
-			msgSolo = "msg_fun_poke_solo";
-			gifType = "POKE";
-			break;
+			case "poke":
+				msgCouple = "msg_fun_poke_couple";
+				msgSolo = "msg_fun_poke_solo";
+				gifType = "POKE";
+				break;
 
-		case "lewd":
-			msgCouple = "msg_fun_lewd_couple";
-			msgSolo = "msg_fun_lewd_solo";
-			gifType = "LEWD";
-			break;
+			case "lewd":
+				msgCouple = "msg_fun_lewd_couple";
+				msgSolo = "msg_fun_lewd_solo";
+				gifType = "LEWD";
+				break;
 
-		case "blush":
-			msgCouple = "msg_fun_blush_couple";
-			msgSolo = "msg_fun_blush_solo";
-			gifType = "BLUSH";
-			break;
+			case "blush":
+				msgCouple = "msg_fun_blush_couple";
+				msgSolo = "msg_fun_blush_solo";
+				gifType = "BLUSH";
+				break;
 
-		case "confused":
-			msgCouple = "msg_fun_confused_couple";
-			msgSolo = "msg_fun_confused_solo";
-			gifType = "CONFUSED";
-			break;
+			case "confused":
+				msgCouple = "msg_fun_confused_couple";
+				msgSolo = "msg_fun_confused_solo";
+				gifType = "CONFUSED";
+				break;
 
-		case "cry":
-			msgCouple = "msg_fun_cry_couple";
-			msgSolo = "msg_fun_cry_solo";
-			gifType = "CRY";
-			break;
+			case "cry":
+				msgCouple = "msg_fun_cry_couple";
+				msgSolo = "msg_fun_cry_solo";
+				gifType = "CRY";
+				break;
 
-		case "sad":
-			msgCouple = "msg_fun_sad_couple";
-			msgSolo = "msg_fun_sad_solo";
-			gifType = "SAD";
-			break;
+			case "sad":
+				msgCouple = "msg_fun_sad_couple";
+				msgSolo = "msg_fun_sad_solo";
+				gifType = "SAD";
+				break;
 
-		case "pat":
-			msgCouple = "msg_fun_pat_couple";
-			msgSolo = "msg_fun_pat_solo";
-			gifType = "PAT";
-			break;
+			case "pat":
+				msgCouple = "msg_fun_pat_couple";
+				msgSolo = "msg_fun_pat_solo";
+				gifType = "PAT";
+				break;
 
-		case "fox":
-			msgCouple = "msg_fun_fox_couple";
-			msgSolo = "msg_fun_fox_solo";
-			gifType = "FOX";
-			break;
+			case "fox":
+				msgCouple = "msg_fun_fox_couple";
+				msgSolo = "msg_fun_fox_solo";
+				gifType = "FOX";
+				break;
 
-		case "punch":
-			msgCouple = "msg_fun_punch_couple";
-			msgSolo = "msg_fun_punch_solo";
-			gifType = "PUNCH";
-			break;
+			case "punch":
+				msgCouple = "msg_fun_punch_couple";
+				msgSolo = "msg_fun_punch_solo";
+				gifType = "PUNCH";
+				break;
 
-		case "trap":
-			msgCouple = "msg_fun_trap_couple";
-			msgSolo = "msg_fun_trap_solo";
-			gifType = "TRAP";
-			break;
+			case "trap":
+				msgCouple = "msg_fun_trap_couple";
+				msgSolo = "msg_fun_trap_solo";
+				gifType = "TRAP";
+				break;
 
-		case "explosion":
-			msgCouple = "msg_fun_explosion_couple";
-			msgSolo = "msg_fun_explosion_solo";
-			gifType = "EXPLOSION";
-			break;
+			case "explosion":
+				msgCouple = "msg_fun_explosion_couple";
+				msgSolo = "msg_fun_explosion_solo";
+				gifType = "EXPLOSION";
+				break;
 
-		default:
-			msgCouple = "msg_fun_error";
-			msgSolo = "msg_fun_error";
-			gifType = "ERROR";
+			default:
+				msgCouple = "msg_fun_error";
+				msgSolo = "msg_fun_error";
+				gifType = "ERROR";
 		}
 
 		sendFunny(event.getGuild(), event.getTextChannel(), event.getAuthor(), findMentioned(args, event),
@@ -181,7 +204,7 @@ public class Fun extends Command {
 	 * Executed.
 	 *
 	 * @param success the success
-	 * @param event the event
+	 * @param event   the event
 	 */
 	@Override
 	public void executed(boolean success, MessageReceivedEvent event) {
@@ -200,12 +223,10 @@ public class Fun extends Command {
 		return "msg_fun_help";
 	}
 
-
-
 	/**
 	 * Find mentioned.
 	 *
-	 * @param args the args
+	 * @param args  the args
 	 * @param event the event
 	 * @return the user
 	 */
@@ -230,13 +251,13 @@ public class Fun extends Command {
 	/**
 	 * Send funny.
 	 *
-	 * @param guild the guild
-	 * @param channel the channel
-	 * @param user1 the user 1
-	 * @param user2 the user 2
+	 * @param guild     the guild
+	 * @param channel   the channel
+	 * @param user1     the user 1
+	 * @param user2     the user 2
 	 * @param msgCouple the msg couple
-	 * @param msgSolo the msg solo
-	 * @param typeGif the type gif
+	 * @param msgSolo   the msg solo
+	 * @param typeGif   the type gif
 	 */
 	private void sendFunny(Guild guild, TextChannel channel, User user1, User user2, String msgCouple, String msgSolo,
 			String typeGif) {

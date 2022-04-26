@@ -8,7 +8,6 @@ import com.kawori.app.fun.command.Fun;
 import com.kawori.app.help.command.Help;
 import com.kawori.app.info.command.Info;
 import com.kawori.app.pick.command.Pick;
-import com.kawori.command.CommandHandler;
 import com.kawori.command.commands.CmdRegion;
 import com.kawori.listener.BotListener;
 import com.kawori.listener.GuildListener;
@@ -44,8 +43,6 @@ public class Main{
 
         setListeners(builder);
 
-        setCommands();
-
         try {
             jda = builder.build();
             jda.awaitReady();
@@ -62,26 +59,11 @@ public class Main{
 
     /** The cmd help. */
     private Help cmdHelp = new Help();
-
-    /** The cmd pick. */
     private Pick cmdPick = new Pick();
-
-    /** The cmd avatar. */
     private Avatar cmdAvatar = new Avatar();
-
-    /** The cmd fun. */
     private Fun cmdFun = new Fun();
-
-
-    /** The cmd info. */
     private Info cmdInfo = new Info();
-
-
-    /** The cmd region. */
     private CmdRegion cmdRegion = new CmdRegion();
-
-
-    /** The cmd achievements. */
     private Achievements cmdAchievements = new Achievements();
 
     /** The ready listener. */
@@ -120,43 +102,6 @@ public class Main{
         builder.addEventListeners(guildListener);
         builder.addEventListeners(botListener);
         builder.addEventListeners(userListener);
-
-    }
-
-    /**
-     * Sets the commands.
-     */
-    private void setCommands() {
-        // util
-        CommandHandler.commands.put("help", cmdHelp);
-
-        CommandHandler.commands.put("region", cmdRegion);
-        CommandHandler.commands.put("achievements", cmdAchievements);
-
-
-        // fun
-        CommandHandler.commands.put("pick", cmdPick);
-        CommandHandler.commands.put("avatar", cmdAvatar);
-        CommandHandler.commands.put("hug", cmdFun);
-        CommandHandler.commands.put("slap", cmdFun);
-        CommandHandler.commands.put("nom", cmdFun);
-        CommandHandler.commands.put("cuddle", cmdFun);
-        CommandHandler.commands.put("kiss", cmdFun);
-        CommandHandler.commands.put("bite", cmdFun);
-        CommandHandler.commands.put("dance", cmdFun);
-        CommandHandler.commands.put("awoo", cmdFun);
-        CommandHandler.commands.put("owo", cmdFun);
-        CommandHandler.commands.put("poke", cmdFun);
-        CommandHandler.commands.put("lewd", cmdFun);
-        CommandHandler.commands.put("blush", cmdFun);
-        CommandHandler.commands.put("confused", cmdFun);
-        CommandHandler.commands.put("cry", cmdFun);
-        CommandHandler.commands.put("sad", cmdFun);
-        CommandHandler.commands.put("pat", cmdFun);
-        CommandHandler.commands.put("fox", cmdFun);
-        CommandHandler.commands.put("punch", cmdFun);
-        CommandHandler.commands.put("trap", cmdFun);
-        CommandHandler.commands.put("explosion", cmdFun);
 
     }
 

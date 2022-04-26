@@ -8,6 +8,7 @@ package com.kawori.app.avatar.command;
 import java.util.List;
 
 import com.kawori.command.Command;
+import com.kawori.command.CommandHandler;
 import com.kawori.message.EmbedPattern;
 import com.kawori.message.MessageController;
 import com.kawori.security.Permissions;
@@ -25,13 +26,17 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class Avatar extends Command {
 
+	public Avatar() {
+		CommandHandler.commands.put("avatar", this);
+	}
+
 	/** The message controller. */
 
-	private MessageController messageController;
+	private MessageController messageController = new MessageController();
 
 	/** The embed pattern. */
 
-	private EmbedPattern embedPattern;
+	private EmbedPattern embedPattern = new EmbedPattern();
 
 	/**
 	 * Action.
