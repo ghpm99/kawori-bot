@@ -5,9 +5,7 @@ import com.kawori.command.Command;
 import com.kawori.command.CommandHandler;
 import com.kawori.message.EmbedPattern;
 import com.kawori.message.MessageController;
-import com.kawori.model.Gear;
 import com.kawori.model.Membro;
-import com.kawori.model.Personagem;
 import com.kawori.security.Permissions;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -41,22 +39,12 @@ public class Info extends Command {
 	public void action(String[] args, MessageReceivedEvent event) {
 		// TODO Auto-generated method stub
 		Membro membro = new Membro();
-		Personagem personagem = new Personagem();
-		Gear gear = new Gear();
 		String familyName = "null";
 		String personagemName = "null";
 		String gearName = "null";
 
 		if (membro != null) {
 			familyName = membro.getFamilyName();
-		}
-
-		if (personagem != null) {
-			personagemName = personagem.getName();
-		}
-
-		if (gear != null) {
-			gearName = String.valueOf(gear.getScore());
 		}
 
 		messageController.sendEmbed(event.getChannel(), embedPattern.createEmbedInfoUser(event.getAuthor(),

@@ -4,16 +4,14 @@ import java.awt.Color;
 import java.util.List;
 
 import com.kawori.message.MessageController;
-import com.kawori.model.AdventureFame;
-import com.kawori.model.ColorBD;
-import com.kawori.model.Guilda;
 import com.kawori.model.Membro;
 import com.kawori.model.Tag;
+
+import org.springframework.stereotype.Controller;
 
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
@@ -25,7 +23,7 @@ import net.dv8tion.jda.api.events.role.update.RoleUpdatePermissionsEvent;
 /**
  * The Class GuildaController.
  */
-
+@Controller
 public class GuildaController {
 
 	/** The tag service. */
@@ -173,7 +171,6 @@ public class GuildaController {
 		tag.setIdRole(role.getId());
 		tag.setName(role.getName());
 		tag.setPosition(role.getPosition());
-		tag.setColor(role.getColor());
 
 		setPermission(tag, role);
 

@@ -1,11 +1,12 @@
 package com.kawori.controller;
 
+import org.springframework.stereotype.Controller;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class ExperienceController.
  */
-
+@Controller
 public class ExperienceController {
 
 

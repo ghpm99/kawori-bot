@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.kawori.model.Membro;
 
+import org.springframework.stereotype.Controller;
+
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
@@ -12,7 +14,7 @@ import net.dv8tion.jda.api.entities.Role;
 /**
  * The Class MembroController.
  */
-
+@Controller
 public class MembroController {
 
 	/** The membro service. */

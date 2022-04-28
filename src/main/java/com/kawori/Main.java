@@ -19,11 +19,15 @@ import com.kawori.service.StatusService;
 import com.kawori.settings.Settings;
 import com.kawori.util.Util;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
+@SpringBootApplication
 public class Main{
 
     private JDA jda;
@@ -115,6 +119,6 @@ public class Main{
     }
 
     public static void main(String[] args){
-        new Main();
+        SpringApplication.run(Main.class, args);
     }
 }

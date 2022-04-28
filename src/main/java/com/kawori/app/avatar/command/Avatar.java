@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.kawori.app.avatar.command;
 
 import java.util.List;
@@ -17,12 +12,6 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class CmdAvatar.
- *
- * @author ghpm9
- */
 
 public class Avatar extends Command {
 

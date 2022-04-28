@@ -1,54 +1,20 @@
 package com.kawori.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class GifBD.
- */
-public class GifBD extends Model{
+import lombok.Data;
 
-	/** The url. */
+
+@Data
+@Entity
+public class GifBD {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private String id;
 	private String url;
-
-	/** The type. */
 	private String type;
-
-	/**
-	 * Gets the url.
-	 *
-	 * @return the url
-	 */
-	public String getUrl() {
-		return url;
-	}
-
-	/**
-	 * Sets the url.
-	 *
-	 * @param url the new url
-	 */
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	/**
-	 * Gets the type.
-	 *
-	 * @return the type
-	 */
-	public String getType() {
-		return type;
-	}
-
-	/**
-	 * Sets the type.
-	 *
-	 * @param type the new type
-	 */
-	public void setType(String type) {
-		this.type = type;
-	}
-
-
-
 }

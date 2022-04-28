@@ -3,13 +3,15 @@ package com.kawori.controller;
 
 import com.kawori.util.Util;
 
+import org.springframework.stereotype.Controller;
+
 import net.dv8tion.jda.api.entities.Guild;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class BotController.
  */
-
+@Controller
 public class BotController {
 
 

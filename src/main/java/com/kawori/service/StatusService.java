@@ -7,15 +7,25 @@ package com.kawori.service;
 
 import java.time.ZonedDateTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class StatusService.
  *
  * @author ghpm9
  */
-
+@Service
 public class StatusService {
 
+	/** The guilda service. */
+	@Autowired
+	private GuildaService guildaService;
+
+	/** The operator service. */
+	@Autowired
+	private OperatorService operatorService;
 
     /** The status bot. */
     private String statusBot = "-";
@@ -76,7 +86,7 @@ public class StatusService {
      * @return the guild count
      */
     public long getGuildCount() {
-    	return 0;
+    	return guildaService.count();
     }
 
     /**
@@ -85,7 +95,7 @@ public class StatusService {
      * @return the user count
      */
     public long getUserCount() {
-    	return 0;
+    	return operatorService.count();
     }
 
 }

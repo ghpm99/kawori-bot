@@ -2,13 +2,15 @@ package com.kawori.controller;
 
 import com.kawori.model.Operator;
 
+import org.springframework.stereotype.Controller;
+
 import net.dv8tion.jda.api.entities.User;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class OperatorController.
  */
-
+@Controller
 public class OperatorController {
 
 	/**

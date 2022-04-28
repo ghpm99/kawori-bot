@@ -10,6 +10,9 @@ import java.util.Properties;
 import com.kawori.model.Guilda;
 import com.kawori.model.Operator;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.User;
 
@@ -17,8 +20,16 @@ import net.dv8tion.jda.api.entities.User;
 /**
  * The Class LanguageService.
  */
-
+@Service
 public class LanguageService {
+
+	/** The guilda service. */
+	@Autowired
+	private GuildaService guildaService;
+
+	/** The operator service. */
+	@Autowired
+	private OperatorService operatorService;
 
 	private final String DEFAULT_LANGUAGE = "Brazil";
 
@@ -30,8 +41,9 @@ public class LanguageService {
 	 * @return the language
 	 */
 	public String getLanguage(Guild guild, User user) {
-
-		return DEFAULT_LANGUAGE;
+		Guilda guilda = guildaService.findById(guild.getId());
+		Operator operator = operatorService.findById(user.getId());
+		return getLanguage(guilda, operator);
 	}
 
 	/**
@@ -120,6 +132,9 @@ public class LanguageService {
 	 * @param region the region
 	 */
 	public void setRegion(Guild guild, String region) {
+		Guilda guilda = guildaService.findById(guild.getId());
+		guilda.setRegion(region.toLowerCase());
+		guildaService.save(guilda);
 
 	}
 
@@ -130,6 +145,10 @@ public class LanguageService {
 	 * @param region the region
 	 */
 	public void setRegion(User user, String region) {
+
+		Operator operator = operatorService.findById(user.getId());
+		operator.setRegion(region.toLowerCase());
+		operatorService.save(operator);
 
 	}
 
