@@ -12,7 +12,6 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 @Component
 public class MessageListener extends ListenerAdapter {
 
-
 	@Override
 	public void onMessageReceived(MessageReceivedEvent evento) {
 
@@ -44,8 +43,8 @@ public class MessageListener extends ListenerAdapter {
 
 			CommandHandler.handleCommand(CommandHandler.parser.parse(message, evento));
 
-		}else if(message.startsWith(Util.PREFIXAUTOROLE) & !evento.getAuthor().getId().equals(evento.getJDA().getSelfUser().getId())) {
-
+		} else if (message.startsWith(Util.PREFIXAUTOROLE)
+				& !evento.getAuthor().getId().equals(evento.getJDA().getSelfUser().getId())) {
 
 		}
 	}

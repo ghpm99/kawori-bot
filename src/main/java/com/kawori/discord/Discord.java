@@ -1,5 +1,6 @@
 package com.kawori.discord;
 
+import javax.annotation.PreDestroy;
 import javax.security.auth.login.LoginException;
 
 import com.kawori.listener.BotListener;
@@ -13,6 +14,8 @@ import com.kawori.settings.Settings;
 import com.kawori.util.Util;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import net.dv8tion.jda.api.JDA;
@@ -30,6 +33,7 @@ public class Discord {
     private GuildListener guildListener;
     private BotListener botListener;
     private UserListener userListener;
+    private StatusService statusService;
 
     @Autowired
     public Discord(ReadyListener readyListener,
@@ -46,7 +50,11 @@ public class Discord {
         this.guildListener = guildListener;
         this.botListener = botListener;
         this.userListener = userListener;
+        this.statusService = statusService;
+    }
 
+    @EventListener(ApplicationReadyEvent.class)
+    private void init() {
         statusService.setStatusBot("Iniciando...");
 
         Util.PREFIX = Settings.getPrefix();
@@ -80,6 +88,12 @@ public class Discord {
         builder.addEventListeners(botListener);
         builder.addEventListeners(userListener);
 
+    }
+
+    @PreDestroy
+    private void destroy(){
+        statusService.setStatusBot("Encerrando");
+        jda.shutdown();
     }
 
     public JDA getJDA() {

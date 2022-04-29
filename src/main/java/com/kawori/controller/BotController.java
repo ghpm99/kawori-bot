@@ -11,7 +11,6 @@ import net.dv8tion.jda.api.entities.Guild;
 public class BotController {
 
 	public void onGuildJoin(Guild guild) {
-
 		reportGuild(guild.getName() + " adicionou o bot", guild);
 	}
 
