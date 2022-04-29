@@ -3,30 +3,16 @@ package com.kawori.listener;
 import com.kawori.command.CommandHandler;
 import com.kawori.util.Util;
 
+import org.springframework.stereotype.Component;
+
 import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-// TODO: Auto-generated Javadoc
-/**
- * The listener interface for receiving message events.
- * The class that is interested in processing a message
- * event implements this interface, and the object created
- * with that class is registered with a component using the
- * component's <code>addMessageListener<code> method. When
- * the message event occurs, that object's appropriate
- * method is invoked.
- *
- * @see MessageEvent
- */
-
+@Component
 public class MessageListener extends ListenerAdapter {
 
-	/**
-	 * On message received.
-	 *
-	 * @param evento the evento
-	 */
+
 	@Override
 	public void onMessageReceived(MessageReceivedEvent evento) {
 
@@ -42,11 +28,6 @@ public class MessageListener extends ListenerAdapter {
 
 	}
 
-	/**
-	 * On private message.
-	 *
-	 * @param evento the evento
-	 */
 	private void onPrivateMessage(MessageReceivedEvent evento) {
 
 		evento.getAuthor().openPrivateChannel().complete()
@@ -54,11 +35,6 @@ public class MessageListener extends ListenerAdapter {
 
 	}
 
-	/**
-	 * On guild message.
-	 *
-	 * @param evento the evento
-	 */
 	private void onGuildMessage(MessageReceivedEvent evento) {
 
 		String message = evento.getMessage().getContentDisplay();

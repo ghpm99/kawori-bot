@@ -16,43 +16,23 @@ import org.springframework.stereotype.Service;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.User;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class LanguageService.
- */
 @Service
 public class LanguageService {
 
-	/** The guilda service. */
 	@Autowired
 	private GuildaService guildaService;
 
-	/** The operator service. */
 	@Autowired
 	private OperatorService operatorService;
 
 	private final String DEFAULT_LANGUAGE = "Brazil";
 
-	/**
-	 * Gets the language.
-	 *
-	 * @param guild the guild
-	 * @param user  the user
-	 * @return the language
-	 */
 	public String getLanguage(Guild guild, User user) {
 		Guilda guilda = guildaService.findById(guild.getId());
 		Operator operator = operatorService.findById(user.getId());
 		return getLanguage(guilda, operator);
 	}
 
-	/**
-	 * Gets the language.
-	 *
-	 * @param guild the guild
-	 * @param user  the user
-	 * @return the language
-	 */
 	private String getLanguage(Guilda guild, Operator user) {
 		String language = DEFAULT_LANGUAGE;
 		if (user.getRegion() != null) {
@@ -63,14 +43,6 @@ public class LanguageService {
 		return language;
 	}
 
-	/**
-	 * Load message.
-	 *
-	 * @param guild   the guild
-	 * @param user    the user
-	 * @param message the message
-	 * @return the string
-	 */
 	public String loadMessage(Guild guild, User user, String message) {
 		String region = getLanguage(guild, user);
 		String fileName = System.getProperty("user.dir") + File.separator + "language" + File.separator + region
@@ -87,7 +59,6 @@ public class LanguageService {
 			createFile(System.getProperty("user.dir") + File.separator + "language", region + ".lng");
 			return " _nameMention , that language is not yet supported!";
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			return " _nameMention , that language is not yet supported!";
 		}
 		if (retorno == null) {
@@ -96,12 +67,6 @@ public class LanguageService {
 		return retorno;
 	}
 
-	/**
-	 * Creates the file.
-	 *
-	 * @param path     the path
-	 * @param fileName the file name
-	 */
 	private void createFile(String path, String fileName) {
 		File newDirectory = new File(path);
 		File newFile = new File(path + File.separator + fileName);
@@ -119,18 +84,10 @@ public class LanguageService {
 				System.out.println("New file " + newFile.getAbsolutePath() + " was failed to be created.");
 			}
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
 	}
 
-	/**
-	 * Sets the region.
-	 *
-	 * @param guild  the guild
-	 * @param region the region
-	 */
 	public void setRegion(Guild guild, String region) {
 		Guilda guilda = guildaService.findById(guild.getId());
 		guilda.setRegion(region.toLowerCase());
@@ -138,12 +95,6 @@ public class LanguageService {
 
 	}
 
-	/**
-	 * Sets the region.
-	 *
-	 * @param user   the user
-	 * @param region the region
-	 */
 	public void setRegion(User user, String region) {
 
 		Operator operator = operatorService.findById(user.getId());

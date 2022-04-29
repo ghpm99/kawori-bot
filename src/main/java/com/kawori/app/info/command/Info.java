@@ -8,36 +8,23 @@ import com.kawori.message.MessageController;
 import com.kawori.model.Membro;
 import com.kawori.security.Permissions;
 
+import org.springframework.stereotype.Controller;
+
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class CmdInfo.
- */
 
+@Controller
 public class Info extends Command {
 
 	public Info(){
 		CommandHandler.commands.put("info", this);
 	}
 
-	/** The message controller. */
-
 	private MessageController messageController = new MessageController();
-
-	/** The embed pattern. */
-
 	private EmbedPattern embedPattern = new EmbedPattern();
 
-	/**
-	 * Action.
-	 *
-	 * @param args the args
-	 * @param event the event
-	 */
 	@Override
 	public void action(String[] args, MessageReceivedEvent event) {
-		// TODO Auto-generated method stub
 		Membro membro = new Membro();
 		String familyName = "null";
 		String personagemName = "null";
@@ -51,50 +38,23 @@ public class Info extends Command {
 				event.getChannel(), event.getGuild(), familyName, personagemName, gearName));
 	}
 
-	/**
-	 * Executed.
-	 *
-	 * @param success the success
-	 * @param event the event
-	 */
 	@Override
 	public void executed(boolean success, MessageReceivedEvent event) {
-		// TODO Auto-generated method stub
 
 	}
 
-	/**
-	 * Help.
-	 *
-	 * @return the string
-	 */
 	@Override
 	public String help() {
-		// TODO Auto-generated method stub
 		return "msg_info_help";
 	}
 
-
-
-	/**
-	 * Help short.
-	 *
-	 * @return the string
-	 */
 	@Override
 	public String helpShort() {
-		// TODO Auto-generated method stub
 		return "msg_info_helpshort";
 	}
 
-	/**
-	 * Gets the permissions.
-	 *
-	 * @return the permissions
-	 */
 	@Override
 	public Permissions getPermissions() {
-		// TODO Auto-generated method stub
 		return Permissions.CMD_UTIL;
 	}
 

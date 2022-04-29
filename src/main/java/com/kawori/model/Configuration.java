@@ -15,7 +15,6 @@ public class Configuration {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
-
 	private String type;
 	private String value;
 

@@ -4,11 +4,7 @@ import com.kawori.model.Canal;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-/**
- * The Interface CanalRepository.
- */
+
 public interface CanalRepository extends JpaRepository<Canal, String> {
-
-
 
 }

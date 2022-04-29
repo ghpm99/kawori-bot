@@ -9,10 +9,6 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class Log.
- */
 @Data
 @Entity
 public class Log{

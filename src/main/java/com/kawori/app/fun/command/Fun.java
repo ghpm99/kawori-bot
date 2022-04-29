@@ -9,17 +9,15 @@ import com.kawori.message.MessageController;
 import com.kawori.security.Permissions;
 import com.kawori.util.Util;
 
+import org.springframework.stereotype.Controller;
+
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class CmdFun.
- */
-
+@Controller
 public class Fun extends Command {
 
 	public Fun() {
@@ -44,26 +42,13 @@ public class Fun extends Command {
 		CommandHandler.commands.put("trap", this);
 		CommandHandler.commands.put("explosion", this);
 	}
-
-	/** The gif bd. */
-
-	/** The message controller. */
-
 	private MessageController messageController = new MessageController();
-
-	/** The embed pattern. */
 
 	private EmbedPattern embedPattern = new EmbedPattern();
 
-	/**
-	 * Action.
-	 *
-	 * @param args  the args
-	 * @param event the event
-	 */
 	@Override
 	public void action(String[] args, MessageReceivedEvent event) {
-		// TODO Auto-generated method stub
+
 		String invoke = event.getMessage().getContentDisplay().split(" ")[0].replaceFirst(Util.PREFIX, "");
 
 		String msgCouple, msgSolo, gifType;
@@ -200,36 +185,16 @@ public class Fun extends Command {
 
 	}
 
-	/**
-	 * Executed.
-	 *
-	 * @param success the success
-	 * @param event   the event
-	 */
 	@Override
 	public void executed(boolean success, MessageReceivedEvent event) {
-		// TODO Auto-generated method stub
 
 	}
 
-	/**
-	 * Help.
-	 *
-	 * @return the string
-	 */
 	@Override
 	public String help() {
-		// TODO Auto-generated method stub
 		return "msg_fun_help";
 	}
 
-	/**
-	 * Find mentioned.
-	 *
-	 * @param args  the args
-	 * @param event the event
-	 * @return the user
-	 */
 	private User findMentioned(String[] args, MessageReceivedEvent event) {
 		User user = event.getAuthor();
 		if (event.getMessage().getMentionedMembers().size() > 0) {
@@ -248,17 +213,6 @@ public class Fun extends Command {
 		return user;
 	}
 
-	/**
-	 * Send funny.
-	 *
-	 * @param guild     the guild
-	 * @param channel   the channel
-	 * @param user1     the user 1
-	 * @param user2     the user 2
-	 * @param msgCouple the msg couple
-	 * @param msgSolo   the msg solo
-	 * @param typeGif   the type gif
-	 */
 	private void sendFunny(Guild guild, TextChannel channel, User user1, User user2, String msgCouple, String msgSolo,
 			String typeGif) {
 		String msg = msgCouple;
@@ -272,25 +226,13 @@ public class Fun extends Command {
 				user1.getAsMention(), user2.getAsMention()), null);
 	}
 
-	/**
-	 * Help short.
-	 *
-	 * @return the string
-	 */
 	@Override
 	public String helpShort() {
-		// TODO Auto-generated method stub
 		return "msg_fun_helpshort";
 	}
 
-	/**
-	 * Gets the permissions.
-	 *
-	 * @return the permissions
-	 */
 	@Override
 	public Permissions getPermissions() {
-		// TODO Auto-generated method stub
 		return Permissions.CMD_FUN;
 	}
 

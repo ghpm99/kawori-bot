@@ -9,10 +9,6 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class Membro.
- */
 @Data
 @Entity
 public class Membro {
