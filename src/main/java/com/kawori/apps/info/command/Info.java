@@ -1,4 +1,4 @@
-package com.kawori.app.info.command;
+package com.kawori.apps.info.command;
 
 
 import com.kawori.command.Command;

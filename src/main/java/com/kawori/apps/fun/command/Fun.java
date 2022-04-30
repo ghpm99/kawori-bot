@@ -1,4 +1,4 @@
-package com.kawori.app.fun.command;
+package com.kawori.apps.fun.command;
 
 import java.util.List;
 

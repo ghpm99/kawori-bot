@@ -1,4 +1,4 @@
-package com.kawori.app.achievements.command;
+package com.kawori.apps.achievements.command;
 
 import com.kawori.command.Command;
 import com.kawori.command.CommandHandler;

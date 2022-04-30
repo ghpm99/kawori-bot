@@ -1,4 +1,4 @@
-package com.kawori.app.avatar.command;
+package com.kawori.apps.avatar.command;
 
 import java.util.List;
 

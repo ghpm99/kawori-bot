@@ -1,4 +1,4 @@
-package com.kawori.app.pick.command;
+package com.kawori.apps.pick.command;
 
 import java.util.Random;
 
