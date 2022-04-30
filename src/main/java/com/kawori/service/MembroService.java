@@ -2,7 +2,7 @@ package com.kawori.service;
 
 import java.util.List;
 
-import com.kawori.model.Membro;
+import com.kawori.model.MemberDiscord;
 import com.kawori.repository.MembroRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,37 +23,35 @@ public class MembroService {
 		this.membroRepository = membroRepository;
 	}
 
-	public Membro save(Membro membro) {
+	public MemberDiscord save(MemberDiscord membro) {
 
 		return membroRepository.save(membro);
 	}
 
-	public List<Membro> findById(String id) {
-		return membroRepository.findByIdUser(id);
+	public List<MemberDiscord> findById(long idUser) {
+		return membroRepository.findByIdUserDiscord(idUser);
 	}
 
-	public Membro findByIdAndIdGuild(String id, String idGuild) {
-		return membroRepository.findByIdUserAndIdGuild(id, idGuild).orElseGet(() -> {
-			Membro membro = new Membro();
-			membro.setIdUser(id);
-			membro.setIdGuild(idGuild);
+	public MemberDiscord findByIdUserAndIdGuild(long idUser, long idGuild) {
+		return membroRepository.findByIdUserDiscordAndIdGuildDiscord(idUser, idGuild).orElseGet(() -> {
+			MemberDiscord membro = new MemberDiscord();
+			membro.setIdUserDiscord(idUser);
+			membro.setIdGuildDiscord(idGuild);
 			return membro;
 		});
 	}
 
-	public Membro loadMembro(Guild guild, Member user) {
-		Membro membro = findByIdAndIdGuild(user.getId(), guild.getId());
+	public MemberDiscord loadMembro(Guild guild, Member user) {
 
-
-
+		MemberDiscord membro = findByIdUserAndIdGuild(user.getIdLong(), guild.getIdLong());
 		return membro;
 	}
 
-	public List<Membro> findAll() {
+	public List<MemberDiscord> findAll() {
 		return membroRepository.findAll();
 	}
 
-	public Page<Membro> findAll(Pageable pageable) {
+	public Page<MemberDiscord> findAll(Pageable pageable) {
 		return membroRepository.findAll(pageable);
 	}
 

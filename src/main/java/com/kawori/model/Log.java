@@ -15,7 +15,7 @@ public class Log{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
+	private long id;
 	private Date hour;
 	private String event;
 	private String guild;

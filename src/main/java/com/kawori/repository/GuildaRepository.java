@@ -3,18 +3,18 @@ package com.kawori.repository;
 import java.util.List;
 import java.util.Optional;
 
-import com.kawori.model.Guilda;
+import com.kawori.model.GuildDiscord;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface GuildaRepository extends JpaRepository<Guilda, String> {
+public interface GuildaRepository extends JpaRepository<GuildDiscord, String> {
 
-	public Optional<Guilda> findById(String id);
+	public Optional<GuildDiscord> findById(Long id);
 
-	public List<Guilda> findByName(String name);
+	public List<GuildDiscord> findByName(String name);
 
-	public List<Guilda> findByIdOwner(String id);
+	public List<GuildDiscord> findByIdOwner(String id);
 
 
 

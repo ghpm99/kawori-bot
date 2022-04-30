@@ -5,7 +5,7 @@ import com.kawori.command.Command;
 import com.kawori.command.CommandHandler;
 import com.kawori.message.EmbedPattern;
 import com.kawori.message.MessageController;
-import com.kawori.model.Membro;
+import com.kawori.model.MemberDiscord;
 import com.kawori.security.Permissions;
 
 import org.springframework.stereotype.Controller;
@@ -25,14 +25,10 @@ public class Info extends Command {
 
 	@Override
 	public void action(String[] args, MessageReceivedEvent event) {
-		Membro membro = new Membro();
+
 		String familyName = "null";
 		String personagemName = "null";
 		String gearName = "null";
-
-		if (membro != null) {
-			familyName = membro.getFamilyName();
-		}
 
 		messageController.sendEmbed(event.getChannel(), embedPattern.createEmbedInfoUser(event.getAuthor(),
 				event.getChannel(), event.getGuild(), familyName, personagemName, gearName));

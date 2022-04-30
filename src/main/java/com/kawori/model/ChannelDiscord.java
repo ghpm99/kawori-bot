@@ -10,11 +10,11 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Canal {
+public class ChannelDiscord {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
+	private long id;
 	private long idGuild;
 	private String name;
 	private String tipo;

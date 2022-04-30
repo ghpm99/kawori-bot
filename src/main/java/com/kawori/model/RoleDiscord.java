@@ -9,13 +9,13 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Tag {
+public class RoleDiscord {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
-	private String idGuild;
-	private String idRole;
+	private long id;
+	private long idGuild;
+	private long idRole;
 	private String name;
 	private int red;
 	private int green;

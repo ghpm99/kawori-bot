@@ -14,7 +14,7 @@ public class GifBD {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
+	private long id;
 	private String url;
 	private String type;
 }

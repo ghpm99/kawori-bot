@@ -2,7 +2,7 @@ package com.kawori.service;
 
 import java.util.List;
 
-import com.kawori.model.Operator;
+import com.kawori.model.UserDiscord;
 import com.kawori.repository.OperatorRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +20,9 @@ public class OperatorService {
 		this.operatorRepository = operatorRepository;
 	}
 
-	public Operator findById(String id) {
+	public UserDiscord findById(long id) {
 		return operatorRepository.findById(id).orElseGet(() -> {
-			Operator user = new Operator();
+			UserDiscord user = new UserDiscord();
 			user.setId(id);
 			user.setWebAuthorized(false);
 			user.setRole("USER");
@@ -30,12 +30,12 @@ public class OperatorService {
 		});
 	}
 
-	public Operator save(Operator operator) {
+	public UserDiscord save(UserDiscord operator) {
 
 		return operatorRepository.save(operator);
 	}
 
-	public List<Operator> findAll() {
+	public List<UserDiscord> findAll() {
 		return operatorRepository.findAll();
 	}
 
@@ -43,7 +43,7 @@ public class OperatorService {
 		return operatorRepository.count();
 	}
 
-	public Page<Operator> findAll(Pageable pageable){
+	public Page<UserDiscord> findAll(Pageable pageable){
 		return operatorRepository.findAll(pageable);
 	}
 

@@ -2,7 +2,7 @@ package com.kawori.service;
 
 import java.util.List;
 
-import com.kawori.model.Canal;
+import com.kawori.model.ChannelDiscord;
 import com.kawori.repository.CanalRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +19,23 @@ public class CanalService {
 	@Autowired
 	private CanalRepository canalRepository;
 
-	public Canal save(Canal canal) {
+	public ChannelDiscord save(ChannelDiscord canal) {
 
 		return canalRepository.save(canal);
 	}
 
-	public Canal findById(String id) {
+	public ChannelDiscord findById(long id) {
 		return canalRepository.findById(id).orElseGet(() -> {
-			Canal canal = new Canal();
+			ChannelDiscord canal = new ChannelDiscord();
 			canal.setId(id);
 			return canal;
 		});
 	}
 
-	public Canal createNew(TextChannel channel) {
-		Canal canal = new Canal();
+	public ChannelDiscord createNew(TextChannel channel) {
+		ChannelDiscord canal = new ChannelDiscord();
 
-		canal.setId(channel.getId());
+		canal.setId(channel.getIdLong());
 		canal.setName(channel.getName());
 		canal.setIdGuild(channel.getGuild().getIdLong());
 		canal.setSendMessage(true);
@@ -44,19 +44,19 @@ public class CanalService {
 		return save(canal);
 	}
 
-	public Canal UpdateCanal(TextChannel channel) {
-		Canal canal = findById(channel.getId());
+	public ChannelDiscord UpdateCanal(TextChannel channel) {
+		ChannelDiscord canal = findById(channel.getIdLong());
 
 		canal.setName(channel.getName());
 
 		return save(canal);
 	}
 
-	public List<Canal> findAll(){
+	public List<ChannelDiscord> findAll(){
 		return canalRepository.findAll();
 	}
 
-	public Page<Canal> findAll(Pageable pageable){
+	public Page<ChannelDiscord> findAll(Pageable pageable){
 		return canalRepository.findAll(pageable);
 	}
 

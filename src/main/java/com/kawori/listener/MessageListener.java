@@ -1,50 +1,70 @@
 package com.kawori.listener;
 
 import com.kawori.command.CommandHandler;
+import com.kawori.model.MessageDiscord;
+import com.kawori.service.MessageService;
 import com.kawori.util.Util;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import net.dv8tion.jda.api.entities.ChannelType;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 @Component
 public class MessageListener extends ListenerAdapter {
 
-	@Override
-	public void onMessageReceived(MessageReceivedEvent evento) {
+	@Autowired
+	private MessageService messageService;
 
-		if (evento.getAuthor().isBot()) {
+	@Override
+	public void onMessageReceived(MessageReceivedEvent event) {
+
+		if (event.getAuthor().isBot()) {
 			return;
 		}
 
-		if (evento.getChannelType() == ChannelType.PRIVATE) {
-			onPrivateMessage(evento);
-		} else if (evento.getChannelType() == ChannelType.TEXT) {
-			onGuildMessage(evento);
+		if (event.getChannelType() == ChannelType.PRIVATE) {
+			onPrivateMessage(event);
+		} else if (event.getChannelType() == ChannelType.TEXT) {
+			onGuildMessage(event);
 		}
 
 	}
 
-	private void onPrivateMessage(MessageReceivedEvent evento) {
+	private void onPrivateMessage(MessageReceivedEvent event) {
 
-		evento.getAuthor().openPrivateChannel().complete()
-				.sendMessage(evento.getAuthor().getName() + "Nao aceito mensagens privadas!").queue();
+		event.getAuthor().openPrivateChannel().complete()
+				.sendMessage(event.getAuthor().getName() + "Nao aceito mensagens privadas!").queue();
 
 	}
 
-	private void onGuildMessage(MessageReceivedEvent evento) {
+	private void onGuildMessage(MessageReceivedEvent event) {
 
-		String message = evento.getMessage().getContentDisplay();
+		String message = event.getMessage().getContentDisplay();
+		Guild guild = event.getGuild();
+		User user = event.getAuthor();
+
+		MessageDiscord messageDiscord = new MessageDiscord();
+		messageDiscord.setIdDiscord(event.getMessageIdLong());
+		messageDiscord.setIdUserDiscord(user.getIdLong());
+		messageDiscord.setIdGuildDiscord(guild.getIdLong());
+		messageDiscord.setCommand(false);
+		messageDiscord.generatedUUID();
+		messageDiscord.setStatus(0);
+
+		messageService.save(messageDiscord);
 
 		if (message.startsWith(Util.PREFIX)
-				& !evento.getAuthor().getId().equals(evento.getJDA().getSelfUser().getId())) {
+				& !event.getAuthor().getId().equals(event.getJDA().getSelfUser().getId())) {
 
-			CommandHandler.handleCommand(CommandHandler.parser.parse(message, evento));
+			CommandHandler.handleCommand(CommandHandler.parser.parse(message, event));
 
 		} else if (message.startsWith(Util.PREFIXAUTOROLE)
-				& !evento.getAuthor().getId().equals(evento.getJDA().getSelfUser().getId())) {
+				& !event.getAuthor().getId().equals(event.getJDA().getSelfUser().getId())) {
 
 		}
 	}

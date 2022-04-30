@@ -1,8 +1,8 @@
 package com.kawori.service;
 
 import com.kawori.controller.ExperienceController;
-import com.kawori.model.Guilda;
-import com.kawori.model.Operator;
+import com.kawori.model.GuildDiscord;
+import com.kawori.model.UserDiscord;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,19 +30,19 @@ public class EventService {
 
 	}
 
-	public void cmdReceivedEvent(String idUser, String idGuild) {
+	public void cmdReceivedEvent(long idUser, Long idGuild) {
 		statusService.increaseCmdReceived();
 		increaseCmdCountGuild(idGuild);
 		increaseCmdCountUser(idUser);
 	}
 
-	private void increaseCmdCountGuild(String idGuild) {
-		Guilda guilda = guildaService.findById(idGuild);
+	private void increaseCmdCountGuild(Long idGuild) {
+		GuildDiscord guilda = guildaService.findById(idGuild);
 		guildaService.save(guilda);
 	}
 
-	private void increaseCmdCountUser(String idUser) {
-		Operator user = operatorService.findById(idUser);
+	private void increaseCmdCountUser(long idUser) {
+		UserDiscord user = operatorService.findById(idUser);
 		operatorService.save(user);
 	}
 }

@@ -1,10 +1,10 @@
 package com.kawori.repository;
 
-import com.kawori.model.Canal;
+import com.kawori.model.ChannelDiscord;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface CanalRepository extends JpaRepository<Canal, String> {
+public interface CanalRepository extends JpaRepository<ChannelDiscord, Long> {
 
 }

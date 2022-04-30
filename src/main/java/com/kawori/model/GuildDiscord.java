@@ -10,17 +10,16 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Guilda {
+public class GuildDiscord {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
+	private long id;
+	private long idDiscord;
+	private long idOwner;
 	private String name;
 	private boolean active;
-	private String region;
 	private boolean block;
-	private boolean site;
-	private String idOwner;
 	private String defaultTextChannel;
 	private String defaultWelcomeMessage;
 	private int cmdCount;

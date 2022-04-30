@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import com.kawori.model.Guilda;
-import com.kawori.model.Operator;
+import com.kawori.model.GuildDiscord;
+import com.kawori.model.UserDiscord;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,17 +28,15 @@ public class LanguageService {
 	private final String DEFAULT_LANGUAGE = "Brazil";
 
 	public String getLanguage(Guild guild, User user) {
-		Guilda guilda = guildaService.findById(guild.getId());
-		Operator operator = operatorService.findById(user.getId());
+		GuildDiscord guilda = guildaService.findById(guild.getIdLong());
+		UserDiscord operator = operatorService.findById(user.getIdLong());
 		return getLanguage(guilda, operator);
 	}
 
-	private String getLanguage(Guilda guild, Operator user) {
+	private String getLanguage(GuildDiscord guild, UserDiscord user) {
 		String language = DEFAULT_LANGUAGE;
 		if (user.getRegion() != null) {
 			language = user.getRegion();
-		} else if (guild.getRegion() != null) {
-			language = guild.getRegion();
 		}
 		return language;
 	}
@@ -89,15 +87,14 @@ public class LanguageService {
 	}
 
 	public void setRegion(Guild guild, String region) {
-		Guilda guilda = guildaService.findById(guild.getId());
-		guilda.setRegion(region.toLowerCase());
+		GuildDiscord guilda = guildaService.findById(guild.getIdLong());
 		guildaService.save(guilda);
 
 	}
 
 	public void setRegion(User user, String region) {
 
-		Operator operator = operatorService.findById(user.getId());
+		UserDiscord operator = operatorService.findById(user.getIdLong());
 		operator.setRegion(region.toLowerCase());
 		operatorService.save(operator);
 

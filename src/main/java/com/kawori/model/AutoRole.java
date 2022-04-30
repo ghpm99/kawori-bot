@@ -16,7 +16,7 @@ public class AutoRole {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
+	private long id;
 
 	@NotNull
 	private String guild;

@@ -2,7 +2,7 @@ package com.kawori.service;
 
 import java.util.List;
 
-import com.kawori.model.Guilda;
+import com.kawori.model.GuildDiscord;
 import com.kawori.repository.GuildaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,20 +20,20 @@ public class GuildaService {
 		this.guildaRepository = guildaRepository;
 	}
 
-	public Guilda save(Guilda guild) {
+	public GuildDiscord save(GuildDiscord guild) {
 
 		return guildaRepository.save(guild);
 	}
 
-	public Guilda findById(String id) {
+	public GuildDiscord findById(Long id) {
 		return guildaRepository.findById(id).orElseGet(() -> {
-			Guilda guild = new Guilda();
+			GuildDiscord guild = new GuildDiscord();
 			guild.setId(id);
 			return guild;
 		});
 	}
 
-	public List<Guilda> findAll() {
+	public List<GuildDiscord> findAll() {
 		return guildaRepository.findAll();
 	}
 
@@ -41,7 +41,7 @@ public class GuildaService {
 		return guildaRepository.count();
 	}
 
-	public Page<Guilda> findAll(Pageable pageable){
+	public Page<GuildDiscord> findAll(Pageable pageable){
 		return guildaRepository.findAll(pageable);
 	}
 

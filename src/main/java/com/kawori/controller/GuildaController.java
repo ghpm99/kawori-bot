@@ -3,7 +3,7 @@ package com.kawori.controller;
 import java.awt.Color;
 import java.util.List;
 
-import com.kawori.model.Membro;
+import com.kawori.model.MemberDiscord;
 
 import org.springframework.stereotype.Controller;
 
@@ -21,29 +21,19 @@ public class GuildaController {
 
 	public void onGuildMemberJoin(Guild guild, Member member) {
 
-		Membro membro = findMember(member.getId(), guild.getId());
-
-		membro.setVisitor(true);
-
+		MemberDiscord membro = findMember(member.getId(), guild.getId());
 		membro.setNick(member.getNickname());
-
-		membro.setFamilyName(member.getUser().getName());
-
 		// sendMessageOnJoin(guild, member);
 
 	}
 
 	public void onGuildMemberLeave(Guild guild, User user) {
 
-		Membro membro = findMember(user.getId(), guild.getId());
-
-		membro.setVisitor(false);
-		membro.setHero(false);
-		membro.setNovice(false);
+		MemberDiscord membro = findMember(user.getId(), guild.getId());
 
 	}
 
-	public Membro findMember(String id, String idGuild) {
+	public MemberDiscord findMember(String id, String idGuild) {
 
 		return null;
 	}

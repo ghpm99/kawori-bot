@@ -11,21 +11,15 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Membro {
+public class MemberDiscord {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
-	private String idDiscord;
-	private String idGuild;
-	private String idUser;
+	private long id;
+	private long idDiscord;
+	private long idGuildDiscord;
+	private long idUserDiscord;
 	private String nick;
-	private String familyName;
 	private boolean banned;
-	private boolean gear;
-	private Date gearUpdate;
-	private boolean hero;
-	private boolean visitor;
-	private boolean novice;
 
 }

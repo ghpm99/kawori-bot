@@ -9,11 +9,11 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Operator {
+public class UserDiscord {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
+	private long id;
 	private long idDiscord;
 	private String name;
 	private String discriminator;

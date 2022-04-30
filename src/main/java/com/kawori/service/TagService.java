@@ -2,7 +2,7 @@ package com.kawori.service;
 
 import java.util.List;
 
-import com.kawori.model.Tag;
+import com.kawori.model.RoleDiscord;
 import com.kawori.repository.TagRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,46 +20,46 @@ public class TagService {
 		this.tagRepository = tagRepository;
 	}
 
-	public Tag save(Tag role) {
+	public RoleDiscord save(RoleDiscord role) {
 
 		return tagRepository.save(role);
 	}
 
-	public List<Tag> findByIdGuildAndBotRole(String idGuild, boolean botRole) {
+	public List<RoleDiscord> findByIdGuildAndBotRole(long idGuild, boolean botRole) {
 		return tagRepository.findByIdGuildAndBotRole(idGuild, botRole);
 	}
 
-	public List<Tag> findByIdGuild(String idGuild) {
+	public List<RoleDiscord> findByIdGuild(long idGuild) {
 		return tagRepository.findByIdGuild(idGuild);
 	}
 
-	public List<Tag> findByIdGuildAndName(String idGuild, String name) {
+	public List<RoleDiscord> findByIdGuildAndName(long idGuild, String name) {
 		return tagRepository.findByIdGuildAndName(idGuild, name);
 	}
 
-	public Tag findByIdRole(String idRole) {
+	public RoleDiscord findByIdRole(long idRole) {
 		return tagRepository.findByIdRole(idRole).orElseGet(() -> {
-			Tag tag = new Tag();
+			RoleDiscord tag = new RoleDiscord();
 			tag.setIdRole(idRole);
 			return tag;
 		});
 	}
 
-	public void delete(Tag tag) {
+	public void delete(RoleDiscord tag) {
 		this.tagRepository.delete(tag);
 	}
 
-	public List<Tag> findAll() {
+	public List<RoleDiscord> findAll() {
 		return tagRepository.findAll();
 	}
 
-	public Page<Tag> findAll(Pageable pgbl) {
+	public Page<RoleDiscord> findAll(Pageable pgbl) {
 		return tagRepository.findAll(pgbl);
 	}
 
-	public Tag findByIdGuildAndIdRole(String idGuild, String idRole) {
+	public RoleDiscord findByIdGuildAndIdRole(long idGuild, long idRole) {
 		return tagRepository.findByIdGuildAndIdRole(idGuild, idRole).orElseGet(() -> {
-			Tag tag = new Tag();
+			RoleDiscord tag = new RoleDiscord();
 			tag.setIdGuild(idGuild);
 			tag.setIdRole(idRole);
 			return tag;
