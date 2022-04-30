@@ -5,6 +5,6 @@ import com.kawori.model.ChannelDiscord;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface CanalRepository extends JpaRepository<ChannelDiscord, Long> {
+public interface ChannelRepository extends JpaRepository<ChannelDiscord, Long> {
 
 }

@@ -20,10 +20,10 @@ import net.dv8tion.jda.api.entities.User;
 public class LanguageService {
 
 	@Autowired
-	private GuildaService guildaService;
+	private GuildService guildaService;
 
 	@Autowired
-	private OperatorService operatorService;
+	private UserService operatorService;
 
 	private final String DEFAULT_LANGUAGE = "Brazil";
 

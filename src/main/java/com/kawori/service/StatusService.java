@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 public class StatusService {
 
 	@Autowired
-	private GuildaService guildaService;
+	private GuildService guildaService;
 
 	@Autowired
-	private OperatorService operatorService;
+	private UserService operatorService;
 
     private String statusBot = "-";
 

@@ -34,4 +34,22 @@ public class MessageService {
         return messageRepository.findAll();
     }
 
+    public MessageDiscord createNewMessage(long idDiscord, long idUserDiscord, long idGuildDiscord){
+        MessageDiscord messageDiscord = new MessageDiscord();
+		messageDiscord.setIdDiscord(idDiscord);
+		messageDiscord.setIdUserDiscord(idUserDiscord);
+		messageDiscord.setIdGuildDiscord(idGuildDiscord);
+		messageDiscord.setCommand("");
+		messageDiscord.generatedUUID();
+		messageDiscord.setStatus(MessageDiscord.Status.PENDING);
+        messageDiscord.createAtNow();
+        return save(messageDiscord);
+    }
+
+    public void finishMessage(MessageDiscord messageDiscord) {
+        messageDiscord.setStatus(MessageDiscord.Status.FINISHED);
+        messageDiscord.finishAtNow();
+        save(messageDiscord);
+    }
+
 }

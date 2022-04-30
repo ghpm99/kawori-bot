@@ -3,7 +3,7 @@ package com.kawori.service;
 import java.util.List;
 
 import com.kawori.model.MemberDiscord;
-import com.kawori.repository.MembroRepository;
+import com.kawori.repository.MemberRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,12 +14,12 @@ import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 
 @Service
-public class MembroService {
+public class MemberService {
 
-	private MembroRepository membroRepository;
+	private MemberRepository membroRepository;
 
 	@Autowired
-	public MembroService(MembroRepository membroRepository) {
+	public MemberService(MemberRepository membroRepository) {
 		this.membroRepository = membroRepository;
 	}
 

@@ -3,7 +3,7 @@ package com.kawori.service;
 import java.util.List;
 
 import com.kawori.model.RoleDiscord;
-import com.kawori.repository.TagRepository;
+import com.kawori.repository.RoleRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,12 +11,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TagService {
+public class RoleService {
 
-	private TagRepository tagRepository;
+	private RoleRepository tagRepository;
 
 	@Autowired
-	public TagService(TagRepository tagRepository) {
+	public RoleService(RoleRepository tagRepository) {
 		this.tagRepository = tagRepository;
 	}
 

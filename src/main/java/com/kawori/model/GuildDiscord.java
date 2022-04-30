@@ -1,5 +1,7 @@
 package com.kawori.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,5 +28,9 @@ public class GuildDiscord {
 	private int level;
 	private int exp;
 	private int expRequired;
+	private Date lastMessage;
 
+	public void updateLastMessage() {
+		this.lastMessage = new Date();
+	}
 }

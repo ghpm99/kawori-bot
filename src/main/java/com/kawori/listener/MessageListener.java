@@ -2,7 +2,10 @@ package com.kawori.listener;
 
 import com.kawori.command.CommandHandler;
 import com.kawori.model.MessageDiscord;
+import com.kawori.model.MessageDiscord.Status;
+import com.kawori.service.GuildService;
 import com.kawori.service.MessageService;
+import com.kawori.service.UserService;
 import com.kawori.util.Util;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +23,21 @@ public class MessageListener extends ListenerAdapter {
 	@Autowired
 	private MessageService messageService;
 
+	@Autowired
+	private UserService userService;
+
+	@Autowired
+	private GuildService guildService;
+
 	@Override
 	public void onMessageReceived(MessageReceivedEvent event) {
 
 		if (event.getAuthor().isBot()) {
 			return;
 		}
+
+		//Salva o registro do usuario no banco de dados
+		userService.registerUser(event.getAuthor().getIdLong(), event.getAuthor().getName(), event.getAuthor().getDiscriminator());
 
 		if (event.getChannelType() == ChannelType.PRIVATE) {
 			onPrivateMessage(event);
@@ -48,25 +60,35 @@ public class MessageListener extends ListenerAdapter {
 		Guild guild = event.getGuild();
 		User user = event.getAuthor();
 
-		MessageDiscord messageDiscord = new MessageDiscord();
-		messageDiscord.setIdDiscord(event.getMessageIdLong());
-		messageDiscord.setIdUserDiscord(user.getIdLong());
-		messageDiscord.setIdGuildDiscord(guild.getIdLong());
-		messageDiscord.setCommand(false);
-		messageDiscord.generatedUUID();
-		messageDiscord.setStatus(0);
+		//Salva o registro de uma nova mensagem no banco de dados
+		MessageDiscord messageDiscord = messageService.createNewMessage(event.getMessageIdLong(), user.getIdLong(),
+				guild.getIdLong());
 
-		messageService.save(messageDiscord);
+		//Salva guild no banco de dados
+		guildService.registerGuild(guild.getIdLong(), guild.getName(), guild.getOwnerIdLong());
 
 		if (message.startsWith(Util.PREFIX)
 				& !event.getAuthor().getId().equals(event.getJDA().getSelfUser().getId())) {
 
-			CommandHandler.handleCommand(CommandHandler.parser.parse(message, event));
+			try {
+				messageDiscord.setCommand(message.substring(0));
+				messageDiscord.setStatus(Status.PENDING);
+				messageService.save(messageDiscord);
+
+				CommandHandler.handleCommand(CommandHandler.parser.parse(message, event));
+
+			} catch (Exception e) {
+				messageDiscord.setStatus(Status.ERROR);
+				messageService.save(messageDiscord);
+			}
 
 		} else if (message.startsWith(Util.PREFIXAUTOROLE)
 				& !event.getAuthor().getId().equals(event.getJDA().getSelfUser().getId())) {
 
 		}
+
+		messageService.finishMessage(messageDiscord);
+
 	}
 
 }

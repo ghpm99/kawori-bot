@@ -8,7 +8,7 @@ import com.kawori.model.RoleDiscord;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface TagRepository extends JpaRepository<RoleDiscord, Long> {
+public interface RoleRepository extends JpaRepository<RoleDiscord, Long> {
 
 	public List<RoleDiscord> findByIdGuildAndBotRole(long idGuild, boolean isBotRole);
 

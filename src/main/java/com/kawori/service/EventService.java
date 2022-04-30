@@ -13,9 +13,9 @@ public class EventService {
 	@Autowired
 	private StatusService statusService;
 	@Autowired
-	private GuildaService guildaService;
+	private GuildService guildaService;
 	@Autowired
-	private OperatorService operatorService;
+	private UserService operatorService;
 	@Autowired
 	private ExperienceController expController;
 

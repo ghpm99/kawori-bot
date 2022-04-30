@@ -1,5 +1,7 @@
 package com.kawori.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,8 +20,6 @@ public class UserDiscord {
 	private String name;
 	private String discriminator;
 	private boolean banned;
-	private String email;
-	private String password;
 	private int level;
 	private int exp;
 	private int expRequired;
@@ -28,4 +28,9 @@ public class UserDiscord {
 	private String region;
 	private boolean webAuthorized;
 	private String role;
+	private Date lastMessage;
+
+	public void updateLastMessage(){
+		this.lastMessage = new Date();
+	}
 }
