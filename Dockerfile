@@ -9,3 +9,5 @@ WORKDIR /app
 COPY pom.xml /app/pom.xml
 
 RUN mvn -B dependency:resolve
+
+EXPOSE 5432
