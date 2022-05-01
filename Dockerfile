@@ -1,8 +1,11 @@
-# syntax=docker/dockerfile:1
+FROM maven:3.6.3-jdk-11
 
-FROM openjdk:16-jre-alpine
+ENV PROFILE=dev
 
-RUN mkdir app
+RUN mkdir /app
 
-ADD /target/${JAR_FILE} /app/spring-docker-spotify.jar
+WORKDIR /app
 
+COPY pom.xml /app/pom.xml
+
+RUN mvn -B dependency:resolve
