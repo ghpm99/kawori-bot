@@ -1,27 +1,28 @@
 package com.kawori.settings;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
 public class Settings {
 
-    private static final boolean DEBUG = true;
+    private final boolean DEBUG = true;
+    @Value("${DISCORD_TOKEN}")
+    private String token;
+    @Value("${DISCORD_PREFIX}")
+    private String prefix;
+    @Value("${DISCORD_PREFIXROLE}")
+    private String prefixrole;
 
-    public static String getToken(){
-        if(DEBUG){
-            return LocalSettings.TOKEN;
-        }
-        return "";
+    public String getToken() {
+        return token;
     }
 
-    public static String getPrefix(){
-        if(DEBUG){
-            return LocalSettings.PREFIX;
-        }
-        return "";
+    public String getPrefix() {
+        return prefix;
     }
 
-    public static String getPrefixRole(){
-        if(DEBUG){
-            return LocalSettings.PREFIXROLE;
-        }
-        return "";
+    public String getPrefixRole() {
+        return prefixrole;
     }
 }

@@ -34,6 +34,7 @@ public class Discord {
     private BotListener botListener;
     private UserListener userListener;
     private StatusService statusService;
+    private Settings settings;
 
     @Autowired
     public Discord(ReadyListener readyListener,
@@ -42,7 +43,8 @@ public class Discord {
             GuildListener guildListener,
             BotListener botListener,
             UserListener userListener,
-            StatusService statusService) {
+            StatusService statusService,
+            Settings settings) {
 
         this.readyListener = readyListener;
         this.messageListener = messageListener;
@@ -51,16 +53,17 @@ public class Discord {
         this.botListener = botListener;
         this.userListener = userListener;
         this.statusService = statusService;
+        this.settings = settings;
     }
 
     @EventListener(ApplicationReadyEvent.class)
     private void init() {
         statusService.setStatusBot("Iniciando...");
 
-        Util.PREFIX = Settings.getPrefix();
-        Util.PREFIXAUTOROLE = Settings.getPrefixRole();
+        Util.PREFIX = settings.getPrefix();
+        Util.PREFIXAUTOROLE = settings.getPrefixRole();
 
-        JDABuilder builder = JDABuilder.createDefault(Settings.getToken(),
+        JDABuilder builder = JDABuilder.createDefault(settings.getToken(),
                 GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MESSAGE_REACTIONS,
                 GatewayIntent.DIRECT_MESSAGES, GatewayIntent.DIRECT_MESSAGE_REACTIONS).setAutoReconnect(true);
 
