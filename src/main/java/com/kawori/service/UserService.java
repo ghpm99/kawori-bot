@@ -21,9 +21,9 @@ public class UserService {
 	}
 
 	public UserDiscord findById(long id) {
-		return userRepository.findById(id).orElseGet(() -> {
+		return userRepository.findByIdDiscord(id).orElseGet(() -> {
 			UserDiscord user = new UserDiscord();
-			user.setId(id);
+			user.setIdDiscord(id);
 			user.setWebAuthorized(false);
 			user.setRole("USER");
 			return user;
