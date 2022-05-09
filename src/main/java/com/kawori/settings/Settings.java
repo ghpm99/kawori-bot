@@ -10,9 +10,7 @@ public class Settings {
 
     private final boolean DEBUG = true;
     private String token;
-    @Value("${DISCORD_PREFIX}")
     private String prefix;
-    @Value("${DISCORD_PREFIXROLE}")
     private String prefixrole;
 
     public String getToken() {

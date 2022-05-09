@@ -157,5 +157,13 @@ buildNumber.properties
 /web-app/plugins
 
 # "temporary" build files
-/target
+/target/
+target/
 
+.vscode/
+
+/application-dev.properties
+/application-prod.properties
+src/main/resources/application.properties
+src/main/resources/application-dev.properties
+src/main/resources/application-prod.properties
