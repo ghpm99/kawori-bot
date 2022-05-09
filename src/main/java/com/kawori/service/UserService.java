@@ -20,16 +20,6 @@ public class UserService {
 		this.userRepository = userRepository;
 	}
 
-	public UserDiscord findById(long id) {
-		return userRepository.findByIdDiscord(id).orElseGet(() -> {
-			UserDiscord user = new UserDiscord();
-			user.setIdDiscord(id);
-			user.setWebAuthorized(false);
-			user.setRole("USER");
-			return user;
-		});
-	}
-
 	public UserDiscord save(UserDiscord operator) {
 		return userRepository.save(operator);
 	}
@@ -49,7 +39,7 @@ public class UserService {
 	public UserDiscord findByIdDiscord(long discordId) {
 		return userRepository.findByIdDiscord(discordId).orElseGet(() -> {
 			UserDiscord user = new UserDiscord();
-			user.setId(discordId);
+			user.setIdDiscord(discordId);
 			user.setWebAuthorized(false);
 			user.setRole("USER");
 			return user;

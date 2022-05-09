@@ -29,7 +29,7 @@ public class LanguageService {
 
 	public String getLanguage(Guild guild, User user) {
 		GuildDiscord guilda = guildaService.findById(guild.getIdLong());
-		UserDiscord operator = operatorService.findById(user.getIdLong());
+		UserDiscord operator = operatorService.findByIdDiscord(user.getIdLong());
 		return getLanguage(guilda, operator);
 	}
 
@@ -94,7 +94,7 @@ public class LanguageService {
 
 	public void setRegion(User user, String region) {
 
-		UserDiscord operator = operatorService.findById(user.getIdLong());
+		UserDiscord operator = operatorService.findByIdDiscord(user.getIdLong());
 		operator.setRegion(region.toLowerCase());
 		operatorService.save(operator);
 

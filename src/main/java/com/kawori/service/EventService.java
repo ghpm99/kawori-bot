@@ -42,7 +42,7 @@ public class EventService {
 	}
 
 	private void increaseCmdCountUser(long idUser) {
-		UserDiscord user = operatorService.findById(idUser);
+		UserDiscord user = operatorService.findByIdDiscord(idUser);
 		operatorService.save(user);
 	}
 }
