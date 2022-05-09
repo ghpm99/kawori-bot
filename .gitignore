@@ -25,3 +25,5 @@ hs_err_pid*
 LocalSettings.java
 
 target/
+application-dev.properties
+application-prod.properties

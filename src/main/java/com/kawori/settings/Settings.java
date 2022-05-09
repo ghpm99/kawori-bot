@@ -1,13 +1,14 @@
 package com.kawori.settings;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@ConfigurationProperties(prefix = "environments")
 public class Settings {
 
     private final boolean DEBUG = true;
-    @Value("${DISCORD_TOKEN}")
     private String token;
     @Value("${DISCORD_PREFIX}")
     private String prefix;
