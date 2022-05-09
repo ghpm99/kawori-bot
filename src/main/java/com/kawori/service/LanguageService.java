@@ -28,7 +28,7 @@ public class LanguageService {
 	private final String DEFAULT_LANGUAGE = "Brazil";
 
 	public String getLanguage(Guild guild, User user) {
-		GuildDiscord guilda = guildaService.findById(guild.getIdLong());
+		GuildDiscord guilda = guildaService.findbyIdDiscord(guild.getIdLong());
 		UserDiscord operator = operatorService.findByIdDiscord(user.getIdLong());
 		return getLanguage(guilda, operator);
 	}
@@ -87,7 +87,7 @@ public class LanguageService {
 	}
 
 	public void setRegion(Guild guild, String region) {
-		GuildDiscord guilda = guildaService.findById(guild.getIdLong());
+		GuildDiscord guilda = guildaService.findbyIdDiscord(guild.getIdLong());
 		guildaService.save(guilda);
 
 	}

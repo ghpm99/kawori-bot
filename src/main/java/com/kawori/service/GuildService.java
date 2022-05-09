@@ -25,14 +25,6 @@ public class GuildService {
 		return guildRepository.save(guild);
 	}
 
-	public GuildDiscord findById(long id) {
-		return guildRepository.findById(id).orElseGet(() -> {
-			GuildDiscord guild = new GuildDiscord();
-			guild.setId(id);
-			return guild;
-		});
-	}
-
 	public List<GuildDiscord> findAll() {
 		return guildRepository.findAll();
 	}
@@ -48,7 +40,7 @@ public class GuildService {
 	public GuildDiscord findbyIdDiscord(long id){
 		return guildRepository.findByIdDiscord(id).orElseGet(() -> {
 			GuildDiscord guild = new GuildDiscord();
-			guild.setId(id);
+			guild.setIdDiscord(id);
 			return guild;
 		});
 	}

@@ -37,7 +37,7 @@ public class EventService {
 	}
 
 	private void increaseCmdCountGuild(Long idGuild) {
-		GuildDiscord guilda = guildaService.findById(idGuild);
+		GuildDiscord guilda = guildaService.findbyIdDiscord(idGuild);
 		guildaService.save(guilda);
 	}
 
