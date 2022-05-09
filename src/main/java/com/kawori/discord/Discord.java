@@ -61,7 +61,7 @@ public class Discord {
         statusService.setStatusBot("Iniciando...");
 
         Util.PREFIX = settings.getPrefix();
-        Util.PREFIXAUTOROLE = settings.getPrefixRole();
+        Util.PREFIXAUTOROLE = settings.getPrefixrole();
 
         JDABuilder builder = JDABuilder.createDefault(settings.getToken(),
                 GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MESSAGE_REACTIONS,

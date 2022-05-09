@@ -1,7 +1,7 @@
 build-docker:
 	mvn spring-boot:build-image -Dspring-boot.build-image.imageName=ghpm99/kawori-bot
 run:
-	docker run -d --network="host" -e SPRING_PROFILES_ACTIVE='dev' --name kawori ghpm99/kawori-bot
+	mvn spring-boot:run -Dspring-boot.run.profiles=dev
 stop:
 	docker stop kawori
 start:
