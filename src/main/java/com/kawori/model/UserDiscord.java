@@ -33,4 +33,13 @@ public class UserDiscord {
 	public void updateLastMessage(){
 		this.lastMessage = new Date();
 	}
+
+	public void increaseMsgCount(){
+		this.msgCount++;
+	}
+
+	public void increaseCmdCount(){
+		this.cmdCount++;
+		increaseMsgCount();
+	}
 }

@@ -3,6 +3,7 @@ package com.kawori.listener;
 import com.kawori.command.CommandHandler;
 import com.kawori.model.MessageDiscord;
 import com.kawori.model.MessageDiscord.Status;
+import com.kawori.service.ExperienceService;
 import com.kawori.service.GuildService;
 import com.kawori.service.MessageService;
 import com.kawori.service.UserService;
@@ -28,6 +29,9 @@ public class MessageListener extends ListenerAdapter {
 
 	@Autowired
 	private GuildService guildService;
+
+	@Autowired
+	private ExperienceService experienceService;
 
 	@Override
 	public void onMessageReceived(MessageReceivedEvent event) {
@@ -73,13 +77,11 @@ public class MessageListener extends ListenerAdapter {
 			try {
 				messageDiscord.setCommand(message.substring(0));
 				messageDiscord.setStatus(Status.PENDING);
-				messageService.save(messageDiscord);
 
 				CommandHandler.handleCommand(CommandHandler.parser.parse(message, event));
 
 			} catch (Exception e) {
 				messageDiscord.setStatus(Status.ERROR);
-				messageService.save(messageDiscord);
 			}
 
 		} else if (message.startsWith(Util.PREFIXAUTOROLE)
@@ -88,6 +90,8 @@ public class MessageListener extends ListenerAdapter {
 		}
 
 		messageService.finishMessage(messageDiscord);
+
+		experienceService.generatedExperience(messageDiscord);
 
 	}
 
